@@ -10,6 +10,7 @@ var UserSchema = Schema({
     email: {type: String, required: true},
     telefono: {type: String, required: true},
     password: {type: String, required: true},
+    role: {type: String, default: 'USER', required: true},
     genero: {type: String, required: false},
     f_nacimiento: {type: String, required: false},
     universidad: {type: String, required: false},
