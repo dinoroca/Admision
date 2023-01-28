@@ -1,1 +1,31 @@
-<p>login works!</p>
+
+<div class="mt-5">
+    <div class="mt-5 pt-5">
+        <div class="mb-5 container d-flex justify-content-center">
+            <div class="p-4 p-sm-5 col-12 col-sm-7 rounded shadow">
+                <h2 class="text-center text-black-50 fw-bold">Iniciar sesión</h2>
+                <p class="text-center pb-4 text-black-50">Estmado usuario, inicie sesión ingresando sus credenciales de sesión</p>
+                <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+                    <label for="email" class="form-label text-black-50">Correo electrónico</label>
+                    <input type="email" class="form-control" placeholder="ingrese su correo electrónico" 
+                        name="email" id="email" [(ngModel)]="user.email" required>
+    
+                    <label for="password" class="form-label mt-4 text-black-50">Contraseña</label>
+                    <input type="password" class="form-control" id="password" 
+                        placeholder="Ingrese su contraseña" name="password" [(ngModel)]="user.password" required>
+                    
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Iniciar sesión</button>
+                    </div>
+
+                    <p class="font-size-sm pt-4 text-center">
+                        Aún no tienes una cuenta?
+                        <a class="fw-bold text-decoration-none text-success" [routerLink]="['/registro']">
+                            Regístrate gratis!</a>
+                    </p>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

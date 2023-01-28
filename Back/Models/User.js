@@ -15,6 +15,7 @@ var UserSchema = Schema({
     f_nacimiento: {type: String, required: false},
     universidad: {type: String, required: false},
     carrera: {type: String, required: false},
+    area: {type: String, required: false},
     perfil: {type: String, default: 'Perfil.png', required: true},
 });
 
