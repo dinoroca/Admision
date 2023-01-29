@@ -13,6 +13,10 @@ export class LoginComponent implements OnInit {
   public user: any = {};
   public usuario: any = {};
   public token: any;
+  public password: any;
+  public show = false;
+
+  public recordar = true;
 
   constructor(
     private _userService: UserService,
@@ -22,6 +26,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this._title.setTitle('Iniciar sesión');
+    this.password = 'password';
   }
 
   login(loginForm: any) {
@@ -37,10 +42,16 @@ export class LoginComponent implements OnInit {
             console.log('Error indefinido!');
 
           } else {
-            localStorage.setItem('token', response.token);
-            localStorage.setItem('_id', response.data._id);
+            if (this.recordar) {
+              localStorage.setItem('token', response.token);
+              localStorage.setItem('_id', response.data._id);
+            } else {
+              sessionStorage.setItem('token', response.token);
+              sessionStorage.setItem('_id', response.data._id);
+            }
 
             this._router.navigate(['/']);
+            window.location.reload();
           }
         }
       );
@@ -48,6 +59,16 @@ export class LoginComponent implements OnInit {
     } else {
       console.log('Error');
 
+    }
+  }
+
+  onClick() {
+    if (this.password === 'password') {
+      this.password = 'text';
+      this.show = true;
+    } else {
+      this.password = 'password';
+      this.show = false;
     }
   }
 

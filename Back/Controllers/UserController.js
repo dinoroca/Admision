@@ -74,7 +74,26 @@ const login_user = async function(req, res) {
     }
 }
 
+const obtener_user = async function (req, res) {
+  if (req.user) {
+
+    var id = req.params['id'];
+
+    try {
+      var reg = await User.findById({ _id: id });
+      res.status(200).send({ data: reg });
+
+    } catch (error) {
+      res.status(200).send({ data: undefined });
+    }
+
+  } else {
+    res.status(500).send({ message: 'NoAccess' });
+  }
+}
+
 module.exports = {
     registro_user,
-    login_user
+    login_user,
+    obtener_user
 }

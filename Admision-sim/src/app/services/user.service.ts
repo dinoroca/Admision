@@ -20,4 +20,9 @@ export class UserService {
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this._http.post(this.url + 'login_user', data, {headers : headers});
   }
+
+  obtener_user(id: any, token: any): Observable<any> {
+    let headers = new HttpHeaders({'Content-Type':'application/json', 'authorization': token});
+    return this._http.get(this.url + 'obtener_user/' + id, {headers : headers});
+  }
 }
