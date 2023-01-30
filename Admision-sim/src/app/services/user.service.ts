@@ -16,6 +16,11 @@ export class UserService {
     this.url = GLOBAL.url;
   }
 
+  registro_user(data: any): Observable<any> {
+    let headers = new HttpHeaders({'Content-Type':'application/json'});
+    return this._http.post(this.url + 'registro_user', data, {headers : headers});
+  }
+
   login_user(data: any): Observable<any> {
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this._http.post(this.url + 'login_user', data, {headers : headers});

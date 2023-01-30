@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../../../services/user.service';
 
 @Component({
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private _userService: UserService,
     private _router: Router,
-    private _title: Title
+    private _title: Title,
+    private _toastrService: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -39,7 +41,7 @@ export class LoginComponent implements OnInit {
       this._userService.login_user(data).subscribe(
         response => {
           if (response.data == undefined) {
-            console.log('Error indefinido!');
+            this._toastrService.error(response.message, 'ERROR');
 
           } else {
             if (this.recordar) {
@@ -49,9 +51,9 @@ export class LoginComponent implements OnInit {
               sessionStorage.setItem('token', response.token);
               sessionStorage.setItem('_id', response.data._id);
             }
+            this.usuario = response.data;
 
             this._router.navigate(['/']);
-            window.location.reload();
           }
         }
       );
@@ -62,7 +64,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  onClick() {
+  onClickPass() {
     if (this.password === 'password') {
       this.password = 'text';
       this.show = true;

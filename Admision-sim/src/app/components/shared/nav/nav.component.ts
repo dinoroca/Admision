@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 import { Router } from '@angular/router';
 import { GLOBAL } from '../../../services/global';
@@ -8,7 +8,7 @@ import { GLOBAL } from '../../../services/global';
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css']
 })
-export class NavComponent {
+export class NavComponent implements OnInit {
 
   public token: any;
   public id: any;
@@ -22,6 +22,8 @@ export class NavComponent {
   ) {
     
     this.url = GLOBAL.url;
+    this.user_lc = undefined;
+
     this.token = localStorage.getItem('token') || sessionStorage.getItem('token');
     this.id = localStorage.getItem('_id') || sessionStorage.getItem('_id');
 
@@ -42,6 +44,13 @@ export class NavComponent {
         }
       );
     }
-    
+  }
+  ngOnInit(): void {  }
+
+  logout() {
+    location.reload();
+    localStorage.clear();
+    sessionStorage.clear();
+    this._router.navigate(['/']);
   }
 }

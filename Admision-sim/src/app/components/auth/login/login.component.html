@@ -1,14 +1,14 @@
 <div class="mt-5">
     <div class="mt-5 pt-5">
         <div class="mb-5 container d-flex justify-content-center">
-            <div class="p-4 p-sm-5 col-12 col-sm-7 rounded shadow">
+            <div class="p-4 p-sm-5 col-12 col-sm-6 rounded shadow">
                 <h2 class="text-center text-black-50 fw-bold">Iniciar sesión</h2>
                 <p class="text-center pb-4 text-black-50">
                     Estmado usuario, inicie sesión ingresando sus credenciales de sesión
                 </p>
                 <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
                     <label for="email" class="form-label text-black-50">Correo electrónico</label>
-                    <input type="email" class="form-control" placeholder="ingrese su correo electrónico" name="email"
+                    <input type="email" class="form-control" placeholder="Ingrese su correo electrónico" name="email"
                         id="email" [(ngModel)]="user.email" required />
 
                     <div class="">
@@ -16,10 +16,10 @@
                         <div class="input-group mb-3">
                             <input [type]="password" class="form-control" id="password" placeholder="Ingrese su contraseña"
                                 name="password" [(ngModel)]="user.password" required />
-                            <button class="btn btn-outline-primary" (click)="onClick()">
+                            <a class="btn btn-outline-primary" (click)="onClickPass()">
                                 <i class="bi bi-eye-fill" aria-hidden="true" *ngIf="!show"></i>
                                 <i class="bi bi-eye-slash-fill" aria-hidden="true" *ngIf="show"></i>
-                            </button>
+                            </a>
                         </div>
                     </div>
 
