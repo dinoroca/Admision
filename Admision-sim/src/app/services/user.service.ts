@@ -30,4 +30,17 @@ export class UserService {
     let headers = new HttpHeaders({'Content-Type':'application/json', 'authorization': token});
     return this._http.get(this.url + 'obtener_user/' + id, {headers : headers});
   }
+
+  //Obtener universidades y areas
+  obtener_universidades(): Observable<any> {
+    return this._http.get('./assets/universidades.json');
+  }
+
+  obtener_areas(): Observable<any> {
+    return this._http.get('./assets/areas.json');
+  }
+
+  obtener_escuelas(): Observable<any> {
+    return this._http.get('./assets/escuelas.json');
+  }
 }

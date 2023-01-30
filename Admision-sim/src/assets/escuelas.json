@@ -1,0 +1,46 @@
+[
+    {
+      "id": "UNSCH-0101",
+      "name": "Ingeniería Civil",
+      "area_id": "UNSCH-01",
+      "area_name": "Ciencias",
+      "universidad_id": "UNSCH"
+    },
+    {
+      "id": "UNSCH-0102",
+      "name": "Ingeniería de Sistemas",
+      "area_id": "UNSCH-01",
+      "area_name": "Ciencias",
+      "universidad_id": "UNSCH"
+    },
+
+    {
+        "id": "UNSCH-0201",
+        "name": "Derecho y Ciencias Políticas",
+        "area_id": "UNSCH-02",
+        "area_name": "Letras",
+        "universidad_id": "UNSCH"
+    },
+    {
+        "id": "UNSCH-0202",
+        "name": "Educación",
+        "area_id": "UNSCH-02",
+        "area_name": "Letras",
+        "universidad_id": "UNSCH"
+    },
+
+    {
+        "id": "UNSCH-0301",
+        "name": "Medicina Humana",
+        "area_id": "UNSCH-03",
+        "area_name": "Biomédicas",
+        "universidad_id": "UNSCH"
+    },
+    {
+        "id": "UNSCH-0302",
+        "name": "Enfermería",
+        "area_id": "UNSCH-03",
+        "area_name": "Biomédicas",
+        "universidad_id": "UNSCH"
+    }
+]

@@ -5,6 +5,7 @@ import { NosotrosComponent } from './nosotros/nosotros.component';
 import { ContactoComponent } from './contacto/contacto.component';
 import { AppRoutingModule } from '../../app-routing.module';
 import { RouterModule } from '@angular/router';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     AppRoutingModule,
-    RouterModule
+    RouterModule,
+    SharedModule
   ],
   exports: [
     HomeComponent,
