@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
             }
             this.usuario = response.data;
 
-            this._router.navigate(['/']);
+            this._router.navigate(['/usuario']);
           }
         }
       );

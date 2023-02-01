@@ -5,6 +5,7 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { NosotrosComponent } from './components/main/nosotros/nosotros.component';
 import { ContactoComponent } from './components/main/contacto/contacto.component';
+import { AuthUserGuard } from './guards/auth-user.guard';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -12,6 +13,13 @@ const routes: Routes = [
   {path: 'registro', component: RegisterComponent},
   {path: 'nosotros', component: NosotrosComponent},
   {path: 'contacto', component: ContactoComponent},
+
+  //Lazy load de modulo de usuario
+  {
+    path: 'usuario',
+    loadChildren: () => import('./components/user/user.module').then(m => m.UserModule),
+    canActivate: [AuthUserGuard]
+  },
 
   {path: '**', redirectTo: ''},
 ];

@@ -10,6 +10,8 @@ import { SharedModule } from './components/shared/shared.module';
 import { AuthModule } from './components/auth/auth.module';
 import { MainModule } from './components/main/main.module';
 import { ToastrModule } from 'ngx-toastr';
+import { UserRoutingModule } from './components/user/user-routing.module';
+import { UserModule } from './components/user/user.module';
 
 @NgModule({
   declarations: [
@@ -20,10 +22,12 @@ import { ToastrModule } from 'ngx-toastr';
     AppRoutingModule,
     SharedModule,
     AuthModule,
+    UserModule,
     MainModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    UserRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
