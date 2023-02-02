@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-inicio',
@@ -8,10 +7,4 @@ import { UserService } from '../../../services/user.service';
 })
 export class InicioComponent {
 
-  constructor(
-    private _userService: UserService
-  ) {
-
-    _userService.isAutenticatedAdmin();
-  }
 }

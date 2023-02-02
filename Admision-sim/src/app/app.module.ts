@@ -12,6 +12,7 @@ import { MainModule } from './components/main/main.module';
 import { ToastrModule } from 'ngx-toastr';
 import { UserRoutingModule } from './components/user/user-routing.module';
 import { UserModule } from './components/user/user.module';
+import { AdminModule } from './components/admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { UserModule } from './components/user/user.module';
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    UserRoutingModule
+    UserRoutingModule,
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]

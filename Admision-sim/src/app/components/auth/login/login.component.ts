@@ -53,7 +53,13 @@ export class LoginComponent implements OnInit {
             }
             this.usuario = response.data;
 
-            this._router.navigate(['/usuario']);
+            if (this.usuario.role === 'USER') {
+              this._router.navigate(['/usuario']);
+
+            } else if(this.usuario.role === 'ADMIN') {
+              this._router.navigate(['/admin']);
+            }
+
           }
         }
       );

@@ -57,6 +57,45 @@ export class UserService {
     return true;
   }
 
+  public isAutenticatedAdmin(): Boolean {
+    
+    const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+    
+    if (!token) {
+      return false;
+    }
+    
+    try {
+      const helper = new JwtHelperService();
+      var decodedToken = helper.decodeToken(<any>token);
+      
+      if (helper.isTokenExpired(token)) {
+        localStorage.clear();
+        return false;
+      }
+      
+      if (!decodedToken) {
+        //console.log('No es valido');
+        localStorage.clear();
+        return false;
+      }
+
+      if (decodedToken.role !== 'ADMIN') {
+        return false;
+      }
+
+    } catch (error) {
+      localStorage.clear();
+      return false;
+    }
+    
+    if (decodedToken.role == 'ADMIN') {
+      return true;
+    }
+
+    return true;
+  }
+
   obtener_user(id: any, token: any): Observable<any> {
     let headers = new HttpHeaders({'Content-Type':'application/json', 'authorization': token});
     return this._http.get(this.url + 'obtener_user/' + id, {headers : headers});

@@ -6,6 +6,7 @@ import { RegisterComponent } from './components/auth/register/register.component
 import { NosotrosComponent } from './components/main/nosotros/nosotros.component';
 import { ContactoComponent } from './components/main/contacto/contacto.component';
 import { AuthUserGuard } from './guards/auth-user.guard';
+import { AuthAdminGuard } from './guards/auth-admin.guard';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -19,6 +20,13 @@ const routes: Routes = [
     path: 'usuario',
     loadChildren: () => import('./components/user/user.module').then(m => m.UserModule),
     canActivate: [AuthUserGuard]
+  },
+
+  //Lazy load de modulo de ADMIN
+  {
+    path: 'admin',
+    loadChildren: () => import('./components/admin/admin.module').then(m => m.AdminModule),
+    canActivate: [AuthAdminGuard]
   },
 
   {path: '**', redirectTo: ''},
