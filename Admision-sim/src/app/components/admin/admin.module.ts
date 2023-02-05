@@ -4,6 +4,9 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { NavComponent } from './nav/nav.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { InicioComponent } from './inicio/inicio.component';
+import { ResultadosComponent } from './resultados/resultados.component';
+import { AlgebraComponent } from './cursos/algebra/algebra.component';
+import { AnatomiaComponent } from './cursos/anatomia/anatomia.component';
 
 
 
@@ -11,7 +14,10 @@ import { InicioComponent } from './inicio/inicio.component';
   declarations: [
     NavComponent,
     SidebarComponent,
-    InicioComponent
+    InicioComponent,
+    ResultadosComponent,
+    AlgebraComponent,
+    AnatomiaComponent
   ],
   imports: [
     CommonModule,
