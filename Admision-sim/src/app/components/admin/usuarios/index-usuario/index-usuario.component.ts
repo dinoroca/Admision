@@ -1,0 +1,48 @@
+import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { UserService } from '../../../../services/user.service';
+
+@Component({
+  selector: 'app-index-usuario',
+  templateUrl: './index-usuario.component.html',
+  styleUrls: ['./index-usuario.component.css']
+})
+export class IndexUsuarioComponent implements OnInit {
+
+  public clientes : Array<any> = [];
+  public filtro_nombres = '';
+  public filtro_correo = '';
+  public token;
+  public load_data = true;
+
+  constructor(
+    private _userService: UserService,
+    private _toastrService: ToastrService
+  ) {
+    this.token = localStorage.getItem('token') || sessionStorage.getItem('token');
+  }
+
+  ngOnInit(): void {
+    this.init_data();
+  }
+
+  init_data() {
+    this._userService.listar_usuarios_filtro_admin(null, null, this.token).subscribe(
+      response => {
+        this.clientes = response.data;
+        this.load_data = false;
+      }
+    );
+  }
+
+  eliminar(id: any) {
+    this._userService.eliminar_user_admin(id, this.token).subscribe(
+      response => {
+        this._toastrService.success('Se eliminó con éxito', 'ELIMINADO!');
+        window.location.reload();
+        this.init_data();
+      }
+    );
+  }
+
+}

@@ -17,6 +17,29 @@ export class UserService {
     this.url = GLOBAL.url;
   }
 
+  //ADMIN
+  listar_usuarios_filtro_admin(tipo: any, filtro: any, token: any): Observable<any> {
+    let headers = new HttpHeaders({'Content-Type':'application/json', 'authorization': token});
+    return this._http.get(this.url + 'listar_usuarios_filtro_admin/'+tipo+'/'+filtro, {headers : headers});
+  }
+
+  obtener_user_admin(id: any, token: any): Observable<any> {
+    let headers = new HttpHeaders({'Content-Type':'application/json', 'authorization': token});
+    return this._http.get(this.url + 'obtener_user_admin/' + id, {headers : headers});
+  }
+
+  actualizar_user_admin(id: any, data: any, token: any): Observable<any> {
+    let headers = new HttpHeaders({'Content-Type':'application/json', 'authorization': token});
+    return this._http.put(this.url + 'actualizar_user_admin/' + id, data, {headers : headers});
+  }
+
+  eliminar_user_admin(id: any, token: any): Observable<any> {
+    let headers = new HttpHeaders({'Content-Type':'application/json', 'authorization': token});
+    return this._http.delete(this.url + 'eliminar_user_admin/' + id, {headers : headers});
+  }
+  
+
+  //USER
   registro_user(data: any): Observable<any> {
     let headers = new HttpHeaders({'Content-Type':'application/json'});
     return this._http.post(this.url + 'registro_user', data, {headers : headers});

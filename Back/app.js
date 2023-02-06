@@ -38,6 +38,14 @@ mongoose.connect('mongodb://127.0.0.1:27017/admision', (err, res) => {
     }
 });
 
+const cors = require('cors');
+
+app.use(cors({
+
+    origin: '*'
+
+}));
+
 //Para convertir las pticiones en formato json
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ limit: '50mb', extended: true }));

@@ -7,6 +7,10 @@ import { InicioComponent } from './inicio/inicio.component';
 import { ResultadosComponent } from './resultados/resultados.component';
 import { AlgebraComponent } from './cursos/algebra/algebra.component';
 import { AnatomiaComponent } from './cursos/anatomia/anatomia.component';
+import { IndexUsuarioComponent } from './usuarios/index-usuario/index-usuario.component';
+import { EditUsuarioComponent } from './usuarios/edit-usuario/edit-usuario.component';
+import { CreateUsuarioComponent } from './usuarios/create-usuario/create-usuario.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -17,11 +21,15 @@ import { AnatomiaComponent } from './cursos/anatomia/anatomia.component';
     InicioComponent,
     ResultadosComponent,
     AlgebraComponent,
-    AnatomiaComponent
+    AnatomiaComponent,
+    IndexUsuarioComponent,
+    EditUsuarioComponent,
+    CreateUsuarioComponent
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    FormsModule
   ]
 })
 export class AdminModule { }
