@@ -4,11 +4,13 @@ import { NavComponent } from './nav/nav.component';
 import { FooterComponent } from './footer/footer.component';
 import { AppRoutingModule } from '../../app-routing.module';
 import { RouterModule } from '@angular/router';
+import { ScrollTopComponent } from './scroll-top/scroll-top.component';
 
 @NgModule({
   declarations: [
     NavComponent,
-    FooterComponent
+    FooterComponent,
+    ScrollTopComponent
   ],
   imports: [
     CommonModule,
@@ -17,7 +19,8 @@ import { RouterModule } from '@angular/router';
   ],
   exports: [
     NavComponent,
-    FooterComponent
+    FooterComponent,
+    ScrollTopComponent
   ]
 })
 export class SharedModule { }
