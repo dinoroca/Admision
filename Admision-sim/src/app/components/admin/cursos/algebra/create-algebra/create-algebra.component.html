@@ -1,0 +1,71 @@
+<app-nav></app-nav>
+
+<div class="container py-5">
+    <app-sidebar></app-sidebar>
+
+    <div class="card shadow mt-4" style="border-color: #F8F8F8;">
+        <h3 class="card-header fw-bold text-center text-muted">
+            Agregar preguntas de Álgebra
+        </h3>
+        <div class="card-body">
+            <div class="d-flex justify-content-center m-3">
+                <div class="p-1 p-sm-1 col-12">
+                    <form #registroForm="ngForm" (ngSubmit)="registro(registroForm)">
+                        <div class="mb-3">
+                            <label for="pregunta" class="form-label fw-bold">PREGUNTA</label>
+                            <textarea class="form-control" id="pregunta" rows="2" placeholder="Ingrese la pregunta"
+                                name="pregunta" [(ngModel)]="pregunta.pregunta">
+                            </textarea>
+                        </div>
+
+                        <div class="row mb-2">
+                            <div class="col-12 col-sm-6">
+                                <label for="altA" class="form-label">Alternativa A.</label>
+                                <textarea class="form-control" id="altA" rows="1" placeholder="Ingrese la alternativa a"
+                                    name="alt_a" [(ngModel)]="pregunta.alt_a"></textarea>
+                            </div>
+
+                            <div class="col-12 col-sm-6 mt-2 mt-sm-0">
+                                <label for="altB" class="form-label">Alternativa B.</label>
+                                <textarea class="form-control" id="altB" rows="1" placeholder="Ingrese la alternativa b"
+                                    name="alt_b" [(ngModel)]="pregunta.alt_b"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <div class="col-12 col-sm-6">
+                                <label for="altC" class="form-label">Alternativa C.</label>
+                                <textarea class="form-control" id="altC" rows="1" placeholder="Ingrese la alternativa c"
+                                    name="alt_c" [(ngModel)]="pregunta.alt_c"></textarea>
+                            </div>
+
+                            <div class="col-12 col-sm-6 mt-2 mt-sm-0">
+                                <label for="altD" class="form-label">Alternativa D.</label>
+                            <textarea class="form-control" id="altD" rows="1" placeholder="Ingrese la alternativa d"
+                                name="alt_d" [(ngModel)]="pregunta.alt_d"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="mb-2">
+                            <label for="altE" class="form-label">Alternativa E.</label>
+                            <textarea class="form-control" id="altE" rows="1" placeholder="Ingrese la alternativa e"
+                                name="alt_e" [(ngModel)]="pregunta.alt_e"></textarea>
+                        </div>
+
+                        <div class="d-grid gap-2 mt-4">
+                            <button type="submit" class="btn btn-primary" [disabled]="registroForm.invalid">
+                                <i class="bi bi-person-check"></i> &nbsp; Registrar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-center">
+            <a title="Volver a Álgebra" class="text-success fs-2" [routerLink]="['/admin/algebra']"><i
+                    class="bi bi-arrow-left-square-fill"></i></a>
+        </div>
+    </div>
+</div>
+
+<p>create-algebra works!</p>

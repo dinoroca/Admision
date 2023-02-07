@@ -1,0 +1,46 @@
+<app-nav></app-nav>
+
+<div class="container py-5">
+    <app-sidebar></app-sidebar>
+
+    <div class="card shadow mt-4" style="border-color: #F8F8F8;">
+        <h5 class="card-header d-flex justify-content-between">
+            Álgebra 
+            <a class="btn btn-success" [routerLink]="['/admin/algebra/registrar']">
+                <i class="bi bi-plus-circle-fill"></i> &nbsp; Registrar
+            </a>
+        </h5>
+        <div class="card-body text-center">
+            <div class="card my-3" *ngFor="let item of preguntas">
+                <div class="card-header d-flex justify-content-between">
+                    
+                    <div class="" [innerHTML]="item.pregunta"></div>
+                    <ng-katex [equation]="'\\sum_{i=1}^nx_i'"></ng-katex>
+                    
+                    <div class="rounded" style="background-color: #e1e1e1;">
+                        <a class="text-primary m-2" [routerLink]="['/admin/usuarios/registrar']" style="text-decoration: none;">
+                            <i class="bi bi-pencil-fill"></i>
+                        </a>
+                        <a class="text-danger m-2" [routerLink]="['/admin/usuarios/registrar']" style="text-decoration: none;">
+                            <i class="bi bi-trash-fill"></i>
+                        </a>
+                    </div>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <button type="button" class="btn btn-light btn-sm m-1">a). {{item.alt_a}} </button>
+                        <button type="button" class="btn btn-light btn-sm m-1">a). {{item.alt_b}} </button>
+                        <button type="button" class="btn btn-light btn-sm m-1">a). {{item.alt_c}} </button>
+                        <button type="button" class="btn btn-light btn-sm m-1">a). {{item.alt_d}} </button>
+                        <button type="button" class="btn btn-light btn-sm m-1">a). {{item.alt_e}} </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="card-footer text-center">
+            Pagination
+        </div>
+    </div>
+</div>
+
+<p>index-algebra works!</p>

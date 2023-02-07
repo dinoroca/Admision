@@ -5,12 +5,17 @@ import { NavComponent } from './nav/nav.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { ResultadosComponent } from './resultados/resultados.component';
-import { AlgebraComponent } from './cursos/algebra/algebra.component';
-import { AnatomiaComponent } from './cursos/anatomia/anatomia.component';
 import { IndexUsuarioComponent } from './usuarios/index-usuario/index-usuario.component';
 import { EditUsuarioComponent } from './usuarios/edit-usuario/edit-usuario.component';
 import { CreateUsuarioComponent } from './usuarios/create-usuario/create-usuario.component';
 import { FormsModule } from '@angular/forms';
+import { IndexAlgebraComponent } from './cursos/algebra/index-algebra/index-algebra.component';
+import { CreateAlgebraComponent } from './cursos/algebra/create-algebra/create-algebra.component';
+import { EditAlgebraComponent } from './cursos/algebra/edit-algebra/edit-algebra.component';
+import { IndexAnatomiaComponent } from './cursos/anatomia/index-anatomia/index-anatomia.component';
+import { CreateAnatomiaComponent } from './cursos/anatomia/create-anatomia/create-anatomia.component';
+import { EditAnatomiaComponent } from './cursos/anatomia/edit-anatomia/edit-anatomia.component';
+import { KatexModule } from 'ng-katex';
 
 
 
@@ -20,16 +25,21 @@ import { FormsModule } from '@angular/forms';
     SidebarComponent,
     InicioComponent,
     ResultadosComponent,
-    AlgebraComponent,
-    AnatomiaComponent,
     IndexUsuarioComponent,
     EditUsuarioComponent,
-    CreateUsuarioComponent
+    CreateUsuarioComponent,
+    IndexAlgebraComponent,
+    CreateAlgebraComponent,
+    EditAlgebraComponent,
+    IndexAnatomiaComponent,
+    CreateAnatomiaComponent,
+    EditAnatomiaComponent
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
-    FormsModule
+    FormsModule,
+    KatexModule
   ]
 })
 export class AdminModule { }
