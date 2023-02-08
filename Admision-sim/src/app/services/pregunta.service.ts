@@ -25,4 +25,19 @@ export class PreguntaService {
     let headers = new HttpHeaders({'Content-Type':'application/json', 'authorization': token});
     return this._http.get(this.url + 'listar_preguntas_filtro_algebra/'+filtro, {headers : headers});
   }
+
+  obtener_pregunta_algebra(id: any, token: any): Observable<any> {
+    let headers = new HttpHeaders({'Content-Type':'application/json', 'authorization': token});
+    return this._http.get(this.url + 'obtener_pregunta_algebra/' + id, {headers : headers});
+  }
+
+  actualizar_pregunta_algebra(id: any, data: any, token: any): Observable<any> {
+    let headers = new HttpHeaders({'Content-Type':'application/json', 'authorization': token});
+    return this._http.put(this.url + 'actualizar_pregunta_algebra/' + id, data, {headers : headers});
+  }
+
+  eliminar_pregunta_algebra(id: any, token: any): Observable<any> {
+    let headers = new HttpHeaders({'Content-Type':'application/json', 'authorization': token});
+    return this._http.delete(this.url + 'eliminar_pregunta_algebra/' + id, {headers : headers});
+  }
 }

@@ -15,7 +15,7 @@ import { EditAlgebraComponent } from './cursos/algebra/edit-algebra/edit-algebra
 import { IndexAnatomiaComponent } from './cursos/anatomia/index-anatomia/index-anatomia.component';
 import { CreateAnatomiaComponent } from './cursos/anatomia/create-anatomia/create-anatomia.component';
 import { EditAnatomiaComponent } from './cursos/anatomia/edit-anatomia/edit-anatomia.component';
-import { KatexModule } from 'ng-katex';
+import { NgxTinymceModule } from 'ngx-tinymce';
 
 
 
@@ -39,7 +39,9 @@ import { KatexModule } from 'ng-katex';
     CommonModule,
     AdminRoutingModule,
     FormsModule,
-    KatexModule
+    NgxTinymceModule.forRoot({
+      baseURL: '../../../assets/tinymce/'
+    })
   ]
 })
 export class AdminModule { }

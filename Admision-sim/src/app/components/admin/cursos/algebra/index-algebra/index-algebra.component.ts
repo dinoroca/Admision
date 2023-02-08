@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GLOBAL } from '../../../../../services/global';
 import { PreguntaService } from '../../../../../services/pregunta.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-index-algebra',
@@ -18,7 +19,8 @@ export class IndexAlgebraComponent implements OnInit {
   public load_btn = false;
 
   constructor(
-    private _preguntaService: PreguntaService
+    private _preguntaService: PreguntaService,
+    private _toastrService: ToastrService
   ) {
     this.token = localStorage.getItem('token');
     this.url = GLOBAL.url;
@@ -33,6 +35,16 @@ export class IndexAlgebraComponent implements OnInit {
       response => {
         this.preguntas = response.data;
         this.load_data = false;
+      }
+    );
+  }
+
+  eliminar(id: any) {
+    this._preguntaService.eliminar_pregunta_algebra(id, this.token).subscribe(
+      response => {
+        this._toastrService.success('Se eliminó con éxito', 'ELIMINADO!');
+        window.location.reload();
+        this.init_data();
       }
     );
   }

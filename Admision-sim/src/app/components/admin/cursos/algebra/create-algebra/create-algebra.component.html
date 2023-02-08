@@ -13,9 +13,10 @@
                     <form #registroForm="ngForm" (ngSubmit)="registro(registroForm)">
                         <div class="mb-3">
                             <label for="pregunta" class="form-label fw-bold">PREGUNTA</label>
-                            <textarea class="form-control" id="pregunta" rows="2" placeholder="Ingrese la pregunta"
-                                name="pregunta" [(ngModel)]="pregunta.pregunta">
-                            </textarea>
+                            <tinymce id="pregunta" placeholder="Ingrese la pregunta"
+                            name="pregunta" [(ngModel)]="pregunta.pregunta">
+                        </tinymce>
+                            
                         </div>
 
                         <div class="row mb-2">

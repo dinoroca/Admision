@@ -8,6 +8,7 @@ import { CreateUsuarioComponent } from './usuarios/create-usuario/create-usuario
 import { EditUsuarioComponent } from './usuarios/edit-usuario/edit-usuario.component';
 import { IndexAlgebraComponent } from './cursos/algebra/index-algebra/index-algebra.component';
 import { CreateAlgebraComponent } from './cursos/algebra/create-algebra/create-algebra.component';
+import { EditAlgebraComponent } from './cursos/algebra/edit-algebra/edit-algebra.component';
 
 const routes: Routes = [
   { path: '', component: InicioComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
 
   { path: 'algebra', component:  IndexAlgebraComponent},
   { path: 'algebra/registrar', component:  CreateAlgebraComponent},
+  { path: 'algebra/:id', component:  EditAlgebraComponent},
   { path: '**', redirectTo: '/admin'},
 
 ];

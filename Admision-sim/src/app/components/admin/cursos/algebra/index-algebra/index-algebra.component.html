@@ -5,7 +5,7 @@
 
     <div class="card shadow mt-4" style="border-color: #F8F8F8;">
         <h5 class="card-header d-flex justify-content-between">
-            Álgebra 
+            Álgebra
             <a class="btn btn-success" [routerLink]="['/admin/algebra/registrar']">
                 <i class="bi bi-plus-circle-fill"></i> &nbsp; Registrar
             </a>
@@ -13,17 +13,47 @@
         <div class="card-body text-center">
             <div class="card my-3" *ngFor="let item of preguntas">
                 <div class="card-header d-flex justify-content-between">
-                    
+
                     <div class="" [innerHTML]="item.pregunta"></div>
-                    <ng-katex [equation]="'\\sum_{i=1}^nx_i'"></ng-katex>
-                    
-                    <div class="rounded" style="background-color: #e1e1e1;">
-                        <a class="text-primary m-2" [routerLink]="['/admin/usuarios/registrar']" style="text-decoration: none;">
+
+                    <div>
+                        <a class="text-primary m-2" [routerLink]="['/admin/algebra', item._id]"
+                            style="text-decoration: none;">
                             <i class="bi bi-pencil-fill"></i>
                         </a>
-                        <a class="text-danger m-2" [routerLink]="['/admin/usuarios/registrar']" style="text-decoration: none;">
-                            <i class="bi bi-trash-fill"></i>
+                        <a type="button" class="text-danger m-2" data-bs-toggle="modal"
+                            [attr.data-bs-target]="'#delete-' + item._id">
+                            <i class="bi-trash-fill"></i>
                         </a>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="delete-{{ item._id }}" tabindex="-1"
+                            aria-labelledby="exampleModalLabel1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel1">
+                                            Eliminar pregunta
+                                        </h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Desea eliminar de forma permanete la preguna 
+                                        <strong [innerHTML]="item.pregunta"></strong>?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> <i
+                                                class="bi bi-x-lg"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-danger" (click)="eliminar(item._id)">
+                                            <i class="bi bi-trash"></i> &nbsp; Eliminar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <ul class="list-group list-group-flush">
@@ -42,5 +72,3 @@
         </div>
     </div>
 </div>
-
-<p>index-algebra works!</p>
