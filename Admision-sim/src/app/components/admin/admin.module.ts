@@ -16,6 +16,7 @@ import { IndexAnatomiaComponent } from './cursos/anatomia/index-anatomia/index-a
 import { CreateAnatomiaComponent } from './cursos/anatomia/create-anatomia/create-anatomia.component';
 import { EditAnatomiaComponent } from './cursos/anatomia/edit-anatomia/edit-anatomia.component';
 import { NgxTinymceModule } from 'ngx-tinymce';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -41,7 +42,8 @@ import { NgxTinymceModule } from 'ngx-tinymce';
     FormsModule,
     NgxTinymceModule.forRoot({
       baseURL: '../../../assets/tinymce/'
-    })
+    }),
+    NgxPaginationModule
   ]
 })
 export class AdminModule { }

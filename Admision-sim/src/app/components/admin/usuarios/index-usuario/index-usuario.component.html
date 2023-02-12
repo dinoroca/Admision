@@ -40,33 +40,22 @@
                     </tbody>
 
                     <ng-container *ngIf="load_data == false">
-                        <tbody *ngFor="let item of clientes; let indice = index">
+                        <tbody
+                            *ngFor="let item of clientes | paginate: { itemsPerPage: 20, currentPage: p }; let indice = index">
                             <tr>
                                 <td>{{ indice + 1 }}</td>
                                 <td>{{ item.nombres }}</td>
                                 <td>{{ item.apellidos }}</td>
                                 <td>{{ item.email }}</td>
                                 <td>
-                                    <div class="dropdown-center">
-                                        <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button"
-                                            data-bs-toggle="dropdown" aria-expanded="false">
-                                            Opciones
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a [routerLink]="['/admin/usuarios', item._id]" class="dropdown-item">
-                                                    <i class="bi-pencil-fill"></i> &nbsp; Editar cliente
-                                                </a>
-                                            </li>
-                                            <li>
-
-                                                <a type="button" class="dropdown-item text-danger" data-bs-toggle="modal"
-                                                [attr.data-bs-target]="'#delete-' + item._id">
-                                                <i class="bi-trash-fill"></i> &nbsp; Eliminar cliente
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    <a class="text-primary m-2" [routerLink]="['/admin/usuarios', item._id]"
+                                        style="text-decoration: none;">
+                                        <i class="bi bi-pencil-fill"></i>
+                                    </a>
+                                    <a type="button" class="text-danger m-2" data-bs-toggle="modal"
+                                        [attr.data-bs-target]="'#delete-' + item._id">
+                                        <i class="bi-trash-fill"></i>
+                                    </a>
 
                                     <!-- Modal -->
                                     <div class="modal fade" id="delete-{{ item._id }}" tabindex="-1"
@@ -88,7 +77,8 @@
                                                     <button type="button" class="btn btn-secondary"
                                                         data-bs-dismiss="modal"> <i class="bi bi-x-lg"></i>
                                                     </button>
-                                                    <button type="button" class="btn btn-danger" (click)="eliminar(item._id)">
+                                                    <button type="button" class="btn btn-danger"
+                                                        (click)="eliminar(item._id)">
                                                         <i class="bi bi-trash"></i> &nbsp; Eliminar
                                                     </button>
                                                 </div>
@@ -104,7 +94,8 @@
             </div>
         </div>
         <div class="card-footer text-center">
-            Pagination
+            <pagination-controls (pageChange)="p = $event" [responsive]="true" previousLabel="" nextLabel="">
+            </pagination-controls>
         </div>
     </div>
 </div>

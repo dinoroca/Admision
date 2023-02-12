@@ -14,6 +14,7 @@ export class IndexUsuarioComponent implements OnInit {
   public filtro_correo = '';
   public token;
   public load_data = true;
+  p: number = 1;
 
   constructor(
     private _userService: UserService,

@@ -17,6 +17,7 @@ export class IndexAlgebraComponent implements OnInit {
   public arr_preguntas: Array<any> = [];
   public url: any;
   public load_btn = false;
+  p: number = 1;
 
   constructor(
     private _preguntaService: PreguntaService,

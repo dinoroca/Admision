@@ -11,7 +11,7 @@
             </a>
         </h5>
         <div class="card-body text-center">
-            <div class="card my-3" *ngFor="let item of preguntas">
+            <div class="card my-3" *ngFor="let item of preguntas | paginate: { itemsPerPage: 10, currentPage: p }">
                 <div class="card-header d-flex justify-content-between">
 
                     <div class="" [innerHTML]="item.pregunta"></div>
@@ -58,17 +58,35 @@
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
-                        <button type="button" class="btn btn-light btn-sm m-1">a). {{item.alt_a}} </button>
-                        <button type="button" class="btn btn-light btn-sm m-1">a). {{item.alt_b}} </button>
-                        <button type="button" class="btn btn-light btn-sm m-1">a). {{item.alt_c}} </button>
-                        <button type="button" class="btn btn-light btn-sm m-1">a). {{item.alt_d}} </button>
-                        <button type="button" class="btn btn-light btn-sm m-1">a). {{item.alt_e}} </button>
+                        <button type="button" class="btn btn-light btn-sm m-1" 
+                            [ngClass]="{'border-success' : item.alt_a[1] == true}">
+                            a). {{item.alt_a[0]}} 
+                        </button>
+                        <button type="button" class="btn btn-light btn-sm m-1"
+                            [ngClass]="{'border-success' : item.alt_b[1] == true}">
+                            b). {{item.alt_b[0]}}
+                        </button>
+                        <button type="button" class="btn btn-light btn-sm m-1"
+                            [ngClass]="{'border-success' : item.alt_c[1] == true}">
+                            c). {{item.alt_c[0]}} 
+                        </button>
+                        <button type="button" class="btn btn-light btn-sm m-1"
+                            [ngClass]="{'border-success' : item.alt_d[1] == true}">
+                            d). {{item.alt_d[0]}}
+                        </button>
+                        <button type="button" class="btn btn-light btn-sm m-1"
+                            [ngClass]="{'border-success' : item.alt_e[1] == true}">
+                            e). {{item.alt_e[0]}}
+                        </button>
                     </li>
                 </ul>
             </div>
         </div>
         <div class="card-footer text-center">
-            Pagination
+            <pagination-controls (pageChange)="p = $event" [responsive]="true"
+                previousLabel=""
+                nextLabel="">
+            </pagination-controls>
         </div>
     </div>
 </div>
