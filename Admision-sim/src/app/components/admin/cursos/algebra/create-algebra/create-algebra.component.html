@@ -18,7 +18,7 @@
                             </tinymce>
                         </div>
 
-                        <div class="row mb-2">
+                        <div class="row mb-3">
                             <div class="col-12 col-sm-6">
                                 <label for="altA" class="form-label text-black-50">Alternativa A.</label>
                                 <div class="row">
@@ -58,7 +58,7 @@
                             </div>
                         </div>
 
-                        <div class="row mb-2">
+                        <div class="row mb-3">
                             <div class="col-12 col-sm-6">
                                 <label for="altC" class="form-label text-black-50">Alternativa C.</label>
                                 <div class="row">
@@ -98,21 +98,32 @@
                             </div>
                         </div>
 
-                        <div class="mb-2">
-                            <label for="altE" class="form-label text-black-50">Alternativa E.</label>
-                            <div class="row">
-                                <div class="col-9">
-                                    <textarea class="form-control" id="altE" rows="1" required
-                                        placeholder="Ingrese la alternativa e" name="alt_e"
-                                        [(ngModel)]="pregunta.alt_e">
+                        <div class="row mb-3">
+                            <div class="col-12 col-sm-6">
+                                <label for="altE" class="form-label text-black-50">Alternativa E.</label>
+                                <div class="row">
+                                    <div class="col-9">
+                                        <textarea class="form-control" id="altE" rows="1" required
+                                            placeholder="Ingrese la alternativa e" name="alt_e"
+                                            [(ngModel)]="pregunta.alt_e">
                                     </textarea>
+                                    </div>
+                                    <div class="form-check col-3">
+                                        <input class="form-check-input" type="checkbox" id="check_e" name="check_e"
+                                            [(ngModel)]="check_e" />
+                                        <label class="form-check-label" for="check_e">
+                                            Correcto
+                                        </label>
+                                    </div>
                                 </div>
-                                <div class="form-check col-3">
-                                    <input class="form-check-input" type="checkbox" id="check_e" name="check_e"
-                                        [(ngModel)]="check_e" />
-                                    <label class="form-check-label" for="check_e">
-                                        Correcto
-                                    </label>
+                            </div>
+
+                            <div class="col-12 col-sm-6 mt-2 mt-sm-0">
+                                <div class="mb-3">
+                                    <label for="solucionario" class="form-label text-black-50 fw-bold">SOLUCIONARIO</label>
+                                    <tinymce id="solucionario" placeholder="Ingrese la solucionario" name="solucionario"
+                                        [(ngModel)]="pregunta.solucionario">
+                                    </tinymce>
                                 </div>
                             </div>
                         </div>

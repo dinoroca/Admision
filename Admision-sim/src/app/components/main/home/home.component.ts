@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { GLOBAL } from '../../../services/global';
+import { UserService } from '../../../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,9 +11,47 @@ import { Title } from '@angular/platform-browser';
 })
 export class HomeComponent implements OnInit {
 
+  public token: any;
+  public id: any;
+  public user: any;
+  public user_lc: any;
+  public url: any;
+
   constructor(
-    private _title: Title
-  ) {}
+    private _title: Title,
+    private _userService: UserService,
+    private _router: Router
+  ) {
+
+    this.url = GLOBAL.url;
+    this.user_lc = undefined;
+
+    this.token = localStorage.getItem('token') || sessionStorage.getItem('token');
+    this.id = localStorage.getItem('_id') || sessionStorage.getItem('_id');
+
+    if (this.token) {
+      //Obtener usuario
+      this._userService.obtener_user(this.id, this.token).subscribe(
+        response => {
+          this.user = response.data;
+          localStorage.setItem('user_data', JSON.stringify(this.user));
+
+          if (localStorage.getItem('user_data')) {
+            this.user_lc = JSON.parse(localStorage.getItem('user_data')!);
+
+            if (this.user_lc.role == 'ADMIN') {
+             this._router.navigate(['/admin']);
+
+            } else if(this.user_lc.role == 'USER') {
+              this._router.navigate(['/usuario']);
+            }
+          } else {
+            this.user_lc = undefined;
+          }
+        }
+      );
+    }
+  }
 
   ngOnInit(): void {
     this._title.setTitle('Inicio');

@@ -20,6 +20,8 @@ var AlgebraSchema = Schema({
     alt_e: [{
         type: mongoose.Schema.Types.Mixed,
       }],
+    
+    solucionario: {type: String, required: false},
 
     createdAt: {type: Date, default: Date.now, required: true}
 });

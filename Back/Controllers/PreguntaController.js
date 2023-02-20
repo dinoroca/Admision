@@ -81,7 +81,8 @@ const actualizar_pregunta_algebra = async function (req, res) {
                 alt_b: data.alt_b,
                 alt_c: data.alt_c,
                 alt_d: data.alt_d,
-                alt_e: data.alt_e
+                alt_e: data.alt_e,
+                solucionario: data.solucionario
             });
 
             res.status(200).send({ data: reg });
