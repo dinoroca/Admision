@@ -17,6 +17,7 @@ export class IndexAlgebraComponent implements OnInit {
   public arr_preguntas: Array<any> = [];
   public url: any;
   public load_btn = false;
+  public show_alert_void = false;
   p: number = 1;
 
   constructor(
@@ -32,12 +33,32 @@ export class IndexAlgebraComponent implements OnInit {
   }
 
   init_data() {
-    this._preguntaService.listar_preguntas_filtro_algebra(null, this.token).subscribe(
+    this._preguntaService.listar_preguntas_filtro_algebra(this.filtro, this.token).subscribe(
       response => {
         this.preguntas = response.data;
         this.load_data = false;
       }
     );
+  }
+
+  filtrar() {
+    if (this.filtro) {
+      this.show_alert_void = false;
+      this._preguntaService.listar_preguntas_filtro_algebra(this.filtro, this.token).subscribe(
+        response => {
+          this.preguntas = response.data;
+          this.load_data = false;
+
+          if (this.preguntas.length == 0) {
+            console.log('No existe');
+            this.show_alert_void = true;
+          }
+        },
+      );
+    }
+    if (this.filtro == '') {
+      this.init_data();
+    }
   }
 
   eliminar(id: any) {
