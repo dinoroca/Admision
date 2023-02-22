@@ -130,18 +130,10 @@ const listar_preguntas_filtro_anatomia = async function (req, res) {
     if (req.user) {
         if (req.user.role == 'ADMIN') {
 
-            let filtro = req.params["filtro"];
+            let filtro = req.params['filtro'];
 
-            console.log(filtro);
-
-            if (filtro == null || filtro == "null") {
-                let reg = await Anatomia.find();
-                res.status(200).send({ data: reg });
-
-            } else if (filtro == "pregunta") {
-                let reg = await Anatomia.find({ pregunta: new RegExp(filtro, "i") });
-                res.status(200).send({ data: reg });
-            }
+            let reg = await Anatomia.find({ pregunta: new RegExp(filtro, 'i') });
+            res.status(200).send({ data: reg });
         } else {
             res.status(500).send({ message: 'NoAccess' });
         }

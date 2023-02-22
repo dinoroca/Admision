@@ -77,7 +77,7 @@ export class CreateAnatomiaComponent implements OnInit {
     if (registroForm.valid) {
       if (this.valid) {
         this.load_btn = true;
-        this._preguntaService.agregar_pregunta_algebra(this.pregunta, this.token).subscribe(
+        this._preguntaService.agregar_pregunta_anatomia(this.pregunta, this.token).subscribe(
           response => {
             if (response.data == undefined) {
               this._toastrService.error(response.message, 'ERROR');
@@ -86,7 +86,7 @@ export class CreateAnatomiaComponent implements OnInit {
 
               this._toastrService.success('Se registró con éxito', 'REGISTRADO!');
 
-              this._router.navigate(['/admin/algebra']);
+              this._router.navigate(['/admin/anatomia']);
             }
 
           });

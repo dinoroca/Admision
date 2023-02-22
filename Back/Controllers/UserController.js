@@ -119,23 +119,10 @@ const listar_usuarios_filtro_admin = async function (req, res) {
   if (req.user) {
     if (req.user.role == 'ADMIN') {
 
-      let tipo = req.params["tipo"];
-      let filtro = req.params["filtro"];
+      let filtro = req.params['filtro'];
 
-      console.log(tipo);
-
-      if (tipo == null || tipo == "null") {
-        let reg = await User.find();
-        res.status(200).send({ data: reg });
-      } else {
-        if (tipo == "nombres") {
-          let reg = await User.find({ apellidos: new RegExp(filtro, "i") });
-          res.status(200).send({ data: reg });
-        } else if (tipo == "correo") {
-          let reg = await User.find({ email: new RegExp(filtro, "i") });
-          res.status(200).send({ data: reg });
-        }
-      }
+      let reg = await User.find({ nombres: new RegExp(filtro, 'i') });
+      res.status(200).send({ data: reg });
     } else {
       res.status(500).send({ message: 'NoAccess' });
     }

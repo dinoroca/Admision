@@ -58,6 +58,7 @@ export class IndexAlgebraComponent implements OnInit {
     }
     if (this.filtro == '') {
       this.init_data();
+      this.show_alert_void = false;
     }
   }
 

@@ -9,11 +9,11 @@ import { UserService } from '../../../../services/user.service';
 })
 export class IndexUsuarioComponent implements OnInit {
 
-  public clientes : Array<any> = [];
-  public filtro_nombres = '';
-  public filtro_correo = '';
+  public usuarios : Array<any> = [];
+  public filtro = '';
   public token;
   public load_data = true;
+  public show_alert_void = false;
   p: number = 1;
 
   constructor(
@@ -28,12 +28,32 @@ export class IndexUsuarioComponent implements OnInit {
   }
 
   init_data() {
-    this._userService.listar_usuarios_filtro_admin(null, null, this.token).subscribe(
+    this._userService.listar_usuarios_filtro_admin(this.filtro, this.token).subscribe(
       response => {
-        this.clientes = response.data;
+        this.usuarios = response.data;
         this.load_data = false;
       }
     );
+  }
+
+  filtrar() {
+    if (this.filtro) {
+      this.show_alert_void = false;
+      this._userService.listar_usuarios_filtro_admin(this.filtro, this.token).subscribe(
+        response => {
+          this.usuarios = response.data;
+          this.load_data = false;
+
+          if (this.usuarios.length == 0) {
+            console.log('No existe');
+            this.show_alert_void = true;
+          }
+        },
+      );
+    }
+    if (this.filtro == '') {
+      this.init_data();
+    }
   }
 
   eliminar(id: any) {

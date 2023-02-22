@@ -11,6 +11,21 @@
             </a>
         </h3>
         <div class="card-body text-center">
+            <div class="text-center">
+                <!-- Button addon on the right -->
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="Buscar por Nombre" name="filtro"
+                        [(ngModel)]="filtro" (keyup)="filtrar()" required />
+
+                    <a class="btn btn-primary bi-search" (click)="filtrar()">
+                    </a>
+
+                    <!-- <button class="btn btn-success bi-file-earmark-excel-fill mx-2" type="button" (click)="download_excel()">
+                        Exportar
+                    </button> -->
+                </div>
+            </div>
+            
             <div class="table-responsive">
                 <table class="table table-hover text-center">
                     <thead class="thead-dark">
@@ -40,7 +55,7 @@
 
                     <ng-container *ngIf="load_data == false">
                         <tbody
-                            *ngFor="let item of clientes | paginate: { itemsPerPage: 20, currentPage: p }; let indice = index">
+                            *ngFor="let item of usuarios | paginate: { itemsPerPage: 20, currentPage: p }; let indice = index">
                             <tr>
                                 <td>{{ indice + 1 }}</td>
                                 <td>{{ item.nombres }}</td>

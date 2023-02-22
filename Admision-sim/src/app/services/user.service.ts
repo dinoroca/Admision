@@ -18,9 +18,9 @@ export class UserService {
   }
 
   //ADMIN
-  listar_usuarios_filtro_admin(tipo: any, filtro: any, token: any): Observable<any> {
+  listar_usuarios_filtro_admin(filtro: any, token: any): Observable<any> {
     let headers = new HttpHeaders({'Content-Type':'application/json', 'authorization': token});
-    return this._http.get(this.url + 'listar_usuarios_filtro_admin/'+tipo+'/'+filtro, {headers : headers});
+    return this._http.get(this.url + 'listar_usuarios_filtro_admin/'+filtro, {headers : headers});
   }
 
   obtener_user_admin(id: any, token: any): Observable<any> {

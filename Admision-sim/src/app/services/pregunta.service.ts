@@ -16,6 +16,7 @@ export class PreguntaService {
     this.url = GLOBAL.url;
   }
 
+  //Álgebra
   agregar_pregunta_algebra(data: any, token: any): Observable<any> {
     let headers = new HttpHeaders({'Content-Type':'application/json', 'authorization': token});
     return this._http.post(this.url + 'agregar_pregunta_algebra', data, {headers : headers});
@@ -39,5 +40,32 @@ export class PreguntaService {
   eliminar_pregunta_algebra(id: any, token: any): Observable<any> {
     let headers = new HttpHeaders({'Content-Type':'application/json', 'authorization': token});
     return this._http.delete(this.url + 'eliminar_pregunta_algebra/' + id, {headers : headers});
+  }
+
+
+  //Anatomía
+  agregar_pregunta_anatomia(data: any, token: any): Observable<any> {
+    let headers = new HttpHeaders({'Content-Type':'application/json', 'authorization': token});
+    return this._http.post(this.url + 'agregar_pregunta_anatomia', data, {headers : headers});
+  }
+
+  listar_preguntas_filtro_anatomia(filtro: any, token: any): Observable<any> {
+    let headers = new HttpHeaders({'Content-Type':'application/json', 'authorization': token});
+    return this._http.get(this.url + 'listar_preguntas_filtro_anatomia/'+filtro, {headers : headers});
+  }
+
+  obtener_pregunta_anatomia(id: any, token: any): Observable<any> {
+    let headers = new HttpHeaders({'Content-Type':'application/json', 'authorization': token});
+    return this._http.get(this.url + 'obtener_pregunta_anatomia/' + id, {headers : headers});
+  }
+
+  actualizar_pregunta_anatomia(id: any, data: any, token: any): Observable<any> {
+    let headers = new HttpHeaders({'Content-Type':'application/json', 'authorization': token});
+    return this._http.put(this.url + 'actualizar_pregunta_anatomia/' + id, data, {headers : headers});
+  }
+
+  eliminar_pregunta_anatomia(id: any, token: any): Observable<any> {
+    let headers = new HttpHeaders({'Content-Type':'application/json', 'authorization': token});
+    return this._http.delete(this.url + 'eliminar_pregunta_anatomia/' + id, {headers : headers});
   }
 }
