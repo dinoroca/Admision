@@ -3,5 +3,81 @@
 <div class="container py-5">
     <div class="shadow rounded mt-5 p-4">
         <p class="text-center">Desarrolle las preguntas que se muestran en el menor tiempo posible!</p>
+
+        <div class="card-body text-center">
+            <div *ngIf="!load_data" class="mt-5 tiempo fixed-top" style="background-color: #FFF;">
+                Tiempo transcurrido: 
+                <span [ngStyle]="{'color': tiempo.getTime() > 0 ? 'green' : 'red'}">
+                    {{getTiempoFormateado(tiempo)}}
+                </span>
+            </div>
+            <div class="" *ngIf="load_data">
+                <button type="button" class="btn btn-success" (click)="iniciar()">Iniciar práctica &nbsp; &nbsp;
+                    <i class="bi bi-forward-fill"></i>
+                </button>
+            </div>
+        </div>
+
+        <ng-container *ngIf="load_data">
+            <div class="text-center">
+                <div class="spinner-grow text-secondary my-3" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </ng-container>
+
+        <ul class="list-group my-4" *ngFor="let item of preguntas; let indice = index">
+            <li class="list-group-item pregunta">
+                <div class="text-center fw-bold text-black-50">
+                    <em>Pregunta {{indice + 1}}</em>
+                </div>
+                <span [innerHTML]="item.pregunta">
+                </span>
+            </li>
+            <li class="list-group-item alternativa">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="alt-{{indice}}" id="alt_a-{{indice}}">
+                    <label class="form-check-label" for="alt_a-{{indice}}">
+                        A) {{item.alt_a[0]}}
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="alt-{{indice}}" id="alt_b-{{indice}}">
+                    <label class="form-check-label" for="alt_b-{{indice}}">
+                        B) {{item.alt_b[0]}}
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="alt-{{indice}}" id="alt_c-{{indice}}">
+                    <label class="form-check-label" for="alt_c-{{indice}}">
+                        C) {{item.alt_c[0]}}
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="alt-{{indice}}" id="alt_d-{{indice}}">
+                    <label class="form-check-label" for="alt_d-{{indice}}">
+                        D) {{item.alt_d[0]}}
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="alt-{{indice}}" id="alt_e-{{indice}}">
+                    <label class="form-check-label" for="alt_e-{{indice}}">
+                        E) {{item.alt_e[0]}}
+                    </label>
+                </div>
+
+            </li>
+        </ul>
+
+        <div class="text-center" *ngIf="!load_data">
+            <button class="btn btn-primary" (click)="calificar()">
+                <i class="bi bi-check-circle"></i> &nbsp; &nbsp;
+                Finalizar práctica
+            </button>
+        </div>
     </div>
 </div>

@@ -14,6 +14,9 @@ export class AlgebraComponent implements OnInit {
   public preguntas: Array<any> = [];
   public url: any;
 
+  public tiempo: Date = new Date(0);
+  public temporizador: any;
+
   constructor(
     private _preguntaService: PreguntaService
   ) {
@@ -22,7 +25,6 @@ export class AlgebraComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.init_data();
   }
 
   init_data() {
@@ -30,9 +32,39 @@ export class AlgebraComponent implements OnInit {
       response => {
         this.preguntas = response.data;
         console.log(this.preguntas);
-        
+        this.load_data = false;
       }
     );
+  }
+
+  iniciar(): void {
+    this.init_data();
+    this.detener();
+    this.tiempo = new Date(0);
+    this.temporizador = setInterval(() => {
+      this.tiempo.setSeconds(this.tiempo.getSeconds() + 1);
+    }, 1000);
+  }
+
+  detener(): void {
+    clearInterval(this.temporizador);
+  }
+
+  resetear(): void {
+    this.detener();
+    this.tiempo = new Date(0);
+  }
+
+  getTiempoFormateado(tiempo: Date): string {
+    const horas = tiempo.getUTCHours().toString().padStart(1, '0');
+    const minutos = tiempo.getUTCMinutes().toString().padStart(1, '0');
+    const segundos = tiempo.getUTCSeconds().toString().padStart(1, '0');
+    return `${horas}h : ${minutos}m : ${segundos}s`;
+  }
+
+  calificar() {
+    this.detener();
+    console.log('Detenido');
   }
 
 }
