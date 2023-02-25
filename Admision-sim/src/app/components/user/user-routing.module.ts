@@ -8,10 +8,16 @@ import { SimulacrosComponent } from './simulacros/simulacros.component';
 import { HistorialComponent } from './historial/historial.component';
 import { RankingComponent } from './ranking/ranking.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { AlgebraComponent } from './practicas/algebra/algebra.component';
+import { AnatomiaComponent } from './practicas/anatomia/anatomia.component';
 
 const routes: Routes = [
   { path: '', component: InicioComponent },
+
   { path: 'practicas', component: PracticasComponent},
+  { path: 'practicas/algebra', component: AlgebraComponent},
+  { path: 'practicas/anatomia', component: AnatomiaComponent},
+
   { path: 'simulacros', component: SimulacrosComponent},
   { path: 'historial', component: HistorialComponent},
   { path: 'ranking', component: RankingComponent},

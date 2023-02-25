@@ -42,6 +42,11 @@ export class PreguntaService {
     return this._http.delete(this.url + 'eliminar_pregunta_algebra/' + id, {headers : headers});
   }
 
+  obtener_preguntas_practica_algebra(token: any): Observable<any> {
+    let headers = new HttpHeaders({'Content-Type':'application/json', 'authorization': token});
+    return this._http.get(this.url + 'obtener_preguntas_practica_algebra', {headers : headers});
+  }
+
 
   //Anatomía
   agregar_pregunta_anatomia(data: any, token: any): Observable<any> {

@@ -13,6 +13,8 @@ api.get('/obtener_pregunta_algebra/:id', auth.auth, PreguntaController.obtener_p
 api.put('/actualizar_pregunta_algebra/:id', auth.auth, PreguntaController.actualizar_pregunta_algebra);
 api.delete('/eliminar_pregunta_algebra/:id', auth.auth, PreguntaController.eliminar_pregunta_algebra);
 
+api.get('/obtener_preguntas_practica_algebra', auth.auth, PreguntaController.obtener_preguntas_practica_algebra);
+
 //Anatomía
 api.post('/agregar_pregunta_anatomia', auth.auth, PreguntaController.agregar_pregunta_anatomia);
 api.get('/listar_preguntas_filtro_anatomia/:filtro?', auth.auth, PreguntaController.listar_preguntas_filtro_anatomia);

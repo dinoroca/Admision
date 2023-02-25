@@ -1,3 +1,30 @@
 <app-nav></app-nav>
 
-<p>practicas works!</p>
+<div class="container py-5">
+    <div class="shadow rounded mt-5 p-4">
+
+        <!-- Álgebra -->
+        <div class="row text-center">
+            <p>Estimado usuario, en este módulo puedes pulir tus habillidades individuales de todos los cursos.</p>
+            <div class="col-12 col-sm-3 mb-3">
+                <div class="card" [routerLink]="['/usuario/practicas/algebra']" style="cursor: pointer;">
+                    <div class="card-body">
+                        <h4 class="card-title fw-bold">Álgebra</h4>
+                        <hr>
+                        <h1 class="card-text"><i class="bi bi-superscript"></i></h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-3 mb-3">
+                <div class="card" [routerLink]="['/usuario/practicas/anatomia']" style="cursor: pointer;">
+                    <div class="card-body">
+                        <h4 class="card-title fw-bold">Anatomía</h4>
+                        <hr>
+                        <h1 class="card-text"><i class="bi bi-lungs"></i></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

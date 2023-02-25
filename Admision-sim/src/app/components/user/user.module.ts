@@ -8,6 +8,8 @@ import { SimulacrosComponent } from './simulacros/simulacros.component';
 import { HistorialComponent } from './historial/historial.component';
 import { RankingComponent } from './ranking/ranking.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { AlgebraComponent } from './practicas/algebra/algebra.component';
+import { AnatomiaComponent } from './practicas/anatomia/anatomia.component';
 
 
 
@@ -19,7 +21,9 @@ import { PerfilComponent } from './perfil/perfil.component';
     SimulacrosComponent,
     HistorialComponent,
     RankingComponent,
-    PerfilComponent
+    PerfilComponent,
+    AlgebraComponent,
+    AnatomiaComponent
   ],
   imports: [
     CommonModule,
