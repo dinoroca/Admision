@@ -192,9 +192,46 @@
                               </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                <i class="bi bi-download"></i> &nbsp;
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" 
+                                data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
+                                <i class="bi bi-eye"></i> &nbsp;
                                 Solucionario
+                            </button>
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="redirigir()">
+                                <i class="bi bi-lightning"></i> &nbsp;
+                                Seguir
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal ver solucionario -->
+            <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdrop1Label" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-4 fw-bold text-success" id="staticBackdrop1Label">Solucionario</h1>
+                        </div>
+                        <div class="modal-body" id="solucionario">
+                            <ul class="list-group my-4" *ngFor="let item of preguntas; let indice = index">
+                                <li class="list-group-item">
+                                    <div class="text-center fw-bold text-black-50">
+                                        <em>Pregunta {{indice + 1}}</em>
+                                    </div>
+                                    <span [innerHTML]="item.pregunta">
+                                    </span>
+                                    <p class="fw-bold text-primary fs-5">Solución</p>
+                                    <span [innerHTML]="item.solucionario">
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="descargarPDF()">
+                                <i class="bi bi-download"></i> &nbsp;
+                                Descargar
                             </button>
                             <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="redirigir()">
                                 <i class="bi bi-lightning"></i> &nbsp;

@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { GLOBAL } from '../../../../services/global';
 import { PreguntaService } from '../../../../services/pregunta.service';
 import { Router } from '@angular/router';
-import { isEmpty } from 'rxjs';
+
+import { jsPDF } from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-algebra',
@@ -42,7 +44,6 @@ export class AlgebraComponent implements OnInit {
     this._preguntaService.obtener_preguntas_practica_algebra(this.token).subscribe(
       response => {
         this.preguntas = response.data;
-        console.log(this.preguntas);
         this.load_data = false;
 
         for (let i = 0; i < this.preguntas.length; i++) {
@@ -55,15 +56,13 @@ export class AlgebraComponent implements OnInit {
           } else if (this.preguntas[i].alt_c[1]) {
             this.correctas[i] = this.preguntas[i].alt_c[0];
 
-          }else if (this.preguntas[i].alt_d[1]) {
+          } else if (this.preguntas[i].alt_d[1]) {
             this.correctas[i] = this.preguntas[i].alt_d[0];
 
-          }else if (this.preguntas[i].alt_e[1]) {
+          } else if (this.preguntas[i].alt_e[1]) {
             this.correctas[i] = this.preguntas[i].alt_e[0];
           }
         }
-
-        console.log(this.correctas);
       }
     );
   }
@@ -97,16 +96,12 @@ export class AlgebraComponent implements OnInit {
 
   //Fin de temporizador
 
-  revisarRespuesta() {
-    console.log(this.preguntas[0].alt_a);
-  }
-
   agregarMarcado(i: any, value: String) {
     this.marcados[i] = value;
     this.verificarMarcados();
   }
 
-  verificarMarcados(){
+  verificarMarcados() {
     if (this.marcados.length !== this.correctas.length) {
       this.proceder = false;
     } else {
@@ -117,7 +112,6 @@ export class AlgebraComponent implements OnInit {
   cambiarProceder() {
     this.proceder = true;
   }
-
 
   calificar() {
     this.detener();
@@ -134,15 +128,43 @@ export class AlgebraComponent implements OnInit {
 
     for (let i = 0; i < this.acertadas.length; i++) {
       if (this.acertadas[i]) {
-        this.puntaje ++;
+        this.puntaje++;
       }
     }
-
-    console.log(this.acertadas);
   }
 
-  redirigir(){
+  redirigir() {
     this._router.navigate(['/usuario/practicas']);
+  }
+
+  public descargarPDF(): void {
+    const element = document.getElementById('solucionario');
+
+    html2canvas(element!).then((canvas) => {
+      const imgData = canvas.toDataURL('image/png');
+      let imgWidth = 210;
+      let pageHeight = 297;
+
+      const height = (canvas.height * imgWidth) / canvas.width;
+
+      let heightLeft = height;
+      let pdf = new jsPDF('p', 'mm');
+      let position = 0;
+
+      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, height);
+      heightLeft -= pageHeight;
+
+      while (heightLeft >= 0) {
+        position = heightLeft - height;
+        pdf.addPage();
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, height);
+        heightLeft -= pageHeight;
+      }
+
+      pdf.save('solucionario-algebra.pdf');
+
+      this._router.navigate(['/usuario/practicas']);
+    });
   }
 
 }
