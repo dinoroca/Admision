@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
+import { UserService } from '../../../../services/user.service';
 
 @Component({
   selector: 'app-algebra',
@@ -18,10 +19,12 @@ export class AlgebraComponent implements OnInit {
   public calificado = false;
   public puntaje: any = 0;
   public token: any;
+  public id: any;
   public preguntas: Array<any> = [];
   public marcados: Array<any> = [];
   public correctas: Array<any> = [];
   public acertadas: Array<any> = [];
+  public resultado: any = {};
   public url: any;
 
   public tiempo: Date = new Date(0);
@@ -29,10 +32,12 @@ export class AlgebraComponent implements OnInit {
 
   constructor(
     private _preguntaService: PreguntaService,
+    private _userService: UserService,
     private _router: Router
   ) {
     this.url = GLOBAL.url;
     this.token = localStorage.getItem('token') || sessionStorage.getItem('token');
+    this.id = localStorage.getItem('_id') || sessionStorage.getItem('_id');
   }
 
   ngOnInit(): void {
@@ -131,6 +136,14 @@ export class AlgebraComponent implements OnInit {
         this.puntaje++;
       }
     }
+
+    this.resultado.user = this.id;
+    this.resultado.puntos = this.puntaje;
+
+    this._userService.registro_resultado_practicas_algebra(this.resultado, this.token).subscribe(
+      response => {
+      }
+    );
   }
 
   redirigir() {

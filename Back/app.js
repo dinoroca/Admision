@@ -26,6 +26,7 @@ io.on('connection', function(socket){
 
 var user_route = require('./routes/User');
 var pregunta_route = require('./routes/Pregunta');
+var practicas_route = require('./routes/Practicas');
 
 //Conexión a base de datos Mongo DB local
 mongoose.connect('mongodb://127.0.0.1:27017/admision', (err, res) => {
@@ -61,5 +62,6 @@ app.use((req, res, next)=>{
 
 app.use('/api', user_route);
 app.use('/api', pregunta_route);
+app.use('/api', practicas_route);
 
 module.exports = app;
