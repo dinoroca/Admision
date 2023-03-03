@@ -18,7 +18,7 @@ export class HistorialComponent implements OnInit {
 
   constructor(
     private _userService: UserService
-  ){
+  ) {
     this.token = localStorage.getItem('token') || sessionStorage.getItem('token');
     this.id = localStorage.getItem('_id') || sessionStorage.getItem('_id');
   }
@@ -35,33 +35,35 @@ export class HistorialComponent implements OnInit {
         let dataAlgebra = [];
         if (this.resultados.length > 0) {
           for (let i = 0; i < this.resultados.length; i++) {
-            labelAlgebra.push((i+1).toString());
+            labelAlgebra.push((i + 1).toString());
             dataAlgebra.push(this.resultados[i].puntos);
           }
 
           this.chart = new Chart("MyChart", {
             type: 'line', //this denotes tha type of chart
-            
-      
+
+
             data: {// values on X-Axis
               labels: labelAlgebra,
               datasets: [
                 {
+                  fill: false,
+                  borderColor: 'rgb(0, 205, 123)',
+                  tension: 0.4,
                   label: "Puntos",
-                  data: dataAlgebra,
-                  backgroundColor: 'rgb(75, 192, 192)'
+                  data: dataAlgebra
                 }
               ]
             },
             options: {
               aspectRatio: 2.4
             }
-      
+
           });
-          
-          
+
+
         } if (this.resultados.length == 1) {
-          
+
         }
       }
     );
