@@ -14,7 +14,8 @@ export class HistorialComponent implements OnInit {
   public chart: any;
 
   public resultados: Array<any> = [];
-  public load_data = true;
+  public load_data_alg = true;
+  public load_data_anat = true;
 
   constructor(
     private _userService: UserService
@@ -27,6 +28,8 @@ export class HistorialComponent implements OnInit {
   }
 
   init_data() {
+    this.load_data_alg = true;
+    this.load_data_anat = true;
     //Obtener resultados de prácticas de Álgebra
     this._userService.obtener_resultado_practicas_algebra(this.id, this.token).subscribe(
       response => {
@@ -61,15 +64,12 @@ export class HistorialComponent implements OnInit {
             }
 
           });
-
-
-        } if (this.resultados.length == 1) {
-
+          this.load_data_alg = false;
         }
       }
     );
 
-    //Obtener resuñtado de prácticas de Anatomía
+    //Obtener resultado de prácticas de Anatomía
     this._userService.obtener_resultado_practicas_anatomia(this.id, this.token).subscribe(
       response => {
         this.resultados = response.data;
@@ -103,10 +103,6 @@ export class HistorialComponent implements OnInit {
             }
 
           });
-
-
-        } if (this.resultados.length == 1) {
-
         }
       }
     );
