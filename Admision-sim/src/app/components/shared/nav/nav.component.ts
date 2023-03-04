@@ -36,7 +36,6 @@ export class NavComponent implements OnInit {
 
           if (localStorage.getItem('user_data')) {
             this.user_lc = JSON.parse(localStorage.getItem('user_data')!);
-            console.log(this.user_lc);
 
           } else {
             this.user_lc = undefined;

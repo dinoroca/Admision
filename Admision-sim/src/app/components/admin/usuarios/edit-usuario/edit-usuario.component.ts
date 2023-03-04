@@ -34,6 +34,11 @@ export class EditUsuarioComponent implements OnInit {
   ngOnInit(): void {
     this.passwClass = 'password';
 
+    //Permitir seleccionar como máximo la fecha actual
+    const hoy = new Date();
+    const input = document.querySelector("#f_nacimiento")!;
+    input.setAttribute("max", hoy.toISOString().split("T")[0]);
+
     this._route.params.subscribe(
       
       params => {

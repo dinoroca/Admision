@@ -46,7 +46,7 @@
                         <div class="" [innerHTML]="item.pregunta"></div>
 
                         <div>
-                            <a class="text-primary m-1" [routerLink]="['/admin/algebra', item._id]"
+                            <a class="text-primary m-1" [routerLink]="['/admin/anatomia', item._id]"
                                 style="text-decoration: none;">
                                 <i class="bi bi-pencil-fill"></i>
                             </a>
@@ -95,23 +95,23 @@
                         <li class="list-group-item">
                             <button type="button" class="btn btn-light btn-sm m-1"
                                 [ngClass]="{'border-success' : item.alt_a[1] == true}">
-                                a). {{item.alt_a[0]}}
+                                A). {{item.alt_a[0]}}
                             </button>
                             <button type="button" class="btn btn-light btn-sm m-1"
                                 [ngClass]="{'border-success' : item.alt_b[1] == true}">
-                                b). {{item.alt_b[0]}}
+                                B). {{item.alt_b[0]}}
                             </button>
                             <button type="button" class="btn btn-light btn-sm m-1"
                                 [ngClass]="{'border-success' : item.alt_c[1] == true}">
-                                c). {{item.alt_c[0]}}
+                                C). {{item.alt_c[0]}}
                             </button>
                             <button type="button" class="btn btn-light btn-sm m-1"
                                 [ngClass]="{'border-success' : item.alt_d[1] == true}">
-                                d). {{item.alt_d[0]}}
+                                D). {{item.alt_d[0]}}
                             </button>
                             <button type="button" class="btn btn-light btn-sm m-1"
                                 [ngClass]="{'border-success' : item.alt_e[1] == true}">
-                                e). {{item.alt_e[0]}}
+                                E). {{item.alt_e[0]}}
                             </button>
                         </li>
                     </ul>

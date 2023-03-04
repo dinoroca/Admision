@@ -124,7 +124,7 @@ export class UserService {
     return this._http.get(this.url + 'obtener_user/' + id, {headers : headers});
   }
 
-  //Resultados de prácticas
+  //Resultados de prácticas Álgebra
   registro_resultado_practicas_algebra(data: any, token: any): Observable<any> {
     let headers = new HttpHeaders({'Content-Type':'application/json', 'authorization': token});
     return this._http.post(this.url + 'registro_resultado_practicas_algebra', data, {headers : headers});
@@ -133,6 +133,17 @@ export class UserService {
   obtener_resultado_practicas_algebra(id: any, token: any): Observable<any> {
     let headers = new HttpHeaders({'Content-Type':'application/json', 'authorization': token});
     return this._http.get(this.url + 'obtener_resultado_practicas_algebra/' + id, {headers : headers});
+  }
+
+  //Resultados de prácticas Anatomía
+  registro_resultado_practicas_anatomia(data: any, token: any): Observable<any> {
+    let headers = new HttpHeaders({'Content-Type':'application/json', 'authorization': token});
+    return this._http.post(this.url + 'registro_resultado_practicas_anatomia', data, {headers : headers});
+  }
+
+  obtener_resultado_practicas_anatomia(id: any, token: any): Observable<any> {
+    let headers = new HttpHeaders({'Content-Type':'application/json', 'authorization': token});
+    return this._http.get(this.url + 'obtener_resultado_practicas_anatomia/' + id, {headers : headers});
   }
 
   //Obtener universidades y areas

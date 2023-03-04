@@ -217,6 +217,16 @@ const eliminar_pregunta_anatomia = async function (req, res) {
     }
 }
 
+// Usuario
+const obtener_preguntas_practica_anatomia = async function (req, res) {
+    if (req.user) {
+        let reg = await Anatomia.aggregate([{$sample: {size: 10}}]);
+        res.status(200).send({ data: reg });
+    } else {
+        res.status(500).send({ message: 'NoAccess' });
+    }
+}
+
 module.exports = {
     agregar_pregunta_algebra,
     listar_preguntas_filtro_algebra,
@@ -230,5 +240,7 @@ module.exports = {
     listar_preguntas_filtro_anatomia,
     obtener_pregunta_anatomia,
     actualizar_pregunta_anatomia,
-    eliminar_pregunta_anatomia
+    eliminar_pregunta_anatomia,
+
+    obtener_preguntas_practica_anatomia
 }

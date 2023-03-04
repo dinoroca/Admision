@@ -22,5 +22,7 @@ api.get('/obtener_pregunta_anatomia/:id', auth.auth, PreguntaController.obtener_
 api.put('/actualizar_pregunta_anatomia/:id', auth.auth, PreguntaController.actualizar_pregunta_anatomia);
 api.delete('/eliminar_pregunta_anatomia/:id', auth.auth, PreguntaController.eliminar_pregunta_anatomia);
 
+api.get('/obtener_preguntas_practica_anatomia', auth.auth, PreguntaController.obtener_preguntas_practica_anatomia);
+
 //Exportar los módulos
 module.exports = api;
