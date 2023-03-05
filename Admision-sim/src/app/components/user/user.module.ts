@@ -10,6 +10,7 @@ import { RankingComponent } from './ranking/ranking.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { AlgebraComponent } from './practicas/algebra/algebra.component';
 import { AnatomiaComponent } from './practicas/anatomia/anatomia.component';
+import { AritmeticaComponent } from './practicas/aritmetica/aritmetica.component';
 
 
 
@@ -23,7 +24,8 @@ import { AnatomiaComponent } from './practicas/anatomia/anatomia.component';
     RankingComponent,
     PerfilComponent,
     AlgebraComponent,
-    AnatomiaComponent
+    AnatomiaComponent,
+    AritmeticaComponent
   ],
   imports: [
     CommonModule,

@@ -146,6 +146,17 @@ export class UserService {
     return this._http.get(this.url + 'obtener_resultado_practicas_anatomia/' + id, {headers : headers});
   }
 
+  //Resultados de prácticas Aritmética
+  registro_resultado_practicas_aritmetica(data: any, token: any): Observable<any> {
+    let headers = new HttpHeaders({'Content-Type':'application/json', 'authorization': token});
+    return this._http.post(this.url + 'registro_resultado_practicas_aritmetica', data, {headers : headers});
+  }
+
+  obtener_resultado_practicas_aritmetica(id: any, token: any): Observable<any> {
+    let headers = new HttpHeaders({'Content-Type':'application/json', 'authorization': token});
+    return this._http.get(this.url + 'obtener_resultado_practicas_aritmetica/' + id, {headers : headers});
+  }
+
   //Obtener universidades y areas
   obtener_universidades(): Observable<any> {
     return this._http.get('./assets/universidades.json');

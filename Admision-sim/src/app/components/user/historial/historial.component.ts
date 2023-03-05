@@ -52,6 +52,8 @@ export class HistorialComponent implements OnInit {
               datasets: [
                 {
                   fill: false,
+                  pointRadius: 5,
+                  pointHoverRadius: 10,
                   borderColor: 'rgb(0, 205, 123)',
                   tension: 0.4,
                   label: "Puntos",
@@ -74,12 +76,12 @@ export class HistorialComponent implements OnInit {
       response => {
         this.resultados = response.data;
 
-        let labelAlgebra = [];
-        let dataAlgebra = [];
+        let labelAnatomia = [];
+        let dataAnatomia = [];
         if (this.resultados.length > 0) {
           for (let i = 0; i < this.resultados.length; i++) {
-            labelAlgebra.push((i + 1).toString());
-            dataAlgebra.push(this.resultados[i].puntos);
+            labelAnatomia.push((i + 1).toString());
+            dataAnatomia.push(this.resultados[i].puntos);
           }
 
           this.chart = new Chart("MyChartAn", {
@@ -87,14 +89,56 @@ export class HistorialComponent implements OnInit {
 
 
             data: {// values on X-Axis
-              labels: labelAlgebra,
+              labels: labelAnatomia,
               datasets: [
                 {
                   fill: false,
+                  pointRadius: 5,
+                  pointHoverRadius: 10,
                   borderColor: 'rgb(255, 67, 73)',
                   tension: 0.4,
                   label: "Puntos",
-                  data: dataAlgebra
+                  data: dataAnatomia
+                }
+              ]
+            },
+            options: {
+              aspectRatio: 2.4
+            }
+
+          });
+        }
+      }
+    );
+
+    //Obtener resultado de prácticas de Aritmética
+    this._userService.obtener_resultado_practicas_aritmetica(this.id, this.token).subscribe(
+      response => {
+        this.resultados = response.data;
+
+        let labelAritmetica = [];
+        let dataAritmetica = [];
+        if (this.resultados.length > 0) {
+          for (let i = 0; i < this.resultados.length; i++) {
+            labelAritmetica.push((i + 1).toString());
+            dataAritmetica.push(this.resultados[i].puntos);
+          }
+
+          this.chart = new Chart("MyChartArit", {
+            type: 'line', //this denotes tha type of chart
+
+
+            data: {// values on X-Axis
+              labels: labelAritmetica,
+              datasets: [
+                {
+                  fill: false,
+                  pointRadius: 5,
+                  pointHoverRadius: 10,
+                  borderColor: 'rgb(20, 211, 221)',
+                  tension: 0.4,
+                  label: "Puntos",
+                  data: dataAritmetica
                 }
               ]
             },

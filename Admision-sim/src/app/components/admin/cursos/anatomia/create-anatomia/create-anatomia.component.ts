@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './create-anatomia.component.html',
   styleUrls: ['./create-anatomia.component.css']
 })
+
 export class CreateAnatomiaComponent implements OnInit {
   public token: any;
   public load_btn = false;

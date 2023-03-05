@@ -10,6 +10,7 @@ import { RankingComponent } from './ranking/ranking.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { AlgebraComponent } from './practicas/algebra/algebra.component';
 import { AnatomiaComponent } from './practicas/anatomia/anatomia.component';
+import { AritmeticaComponent } from './practicas/aritmetica/aritmetica.component';
 
 const routes: Routes = [
   { path: '', component: InicioComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'practicas', component: PracticasComponent},
   { path: 'practicas/algebra', component: AlgebraComponent},
   { path: 'practicas/anatomia', component: AnatomiaComponent},
+  { path: 'practicas/aritmetica', component: AritmeticaComponent},
 
   { path: 'simulacros', component: SimulacrosComponent},
   { path: 'historial', component: HistorialComponent},
