@@ -30,6 +30,7 @@ export class HistorialComponent implements OnInit {
   init_data() {
     this.load_data_alg = true;
     this.load_data_anat = true;
+
     //Obtener resultados de prácticas de Álgebra
     this._userService.obtener_resultado_practicas_algebra(this.id, this.token).subscribe(
       response => {
@@ -139,6 +140,46 @@ export class HistorialComponent implements OnInit {
                   tension: 0.4,
                   label: "Puntos",
                   data: dataAritmetica
+                }
+              ]
+            },
+            options: {
+              aspectRatio: 2.4
+            }
+
+          });
+        }
+      }
+    );
+
+    //Obtener resultado de prácticas de Biología
+    this._userService.obtener_resultado_practicas_biologia(this.id, this.token).subscribe(
+      response => {
+        this.resultados = response.data;
+
+        let labelBiologia = [];
+        let dataBiologia = [];
+        if (this.resultados.length > 0) {
+          for (let i = 0; i < this.resultados.length; i++) {
+            labelBiologia.push((i + 1).toString());
+            dataBiologia.push(this.resultados[i].puntos);
+          }
+
+          this.chart = new Chart("MyChartBio", {
+            type: 'line', //this denotes tha type of chart
+
+
+            data: {// values on X-Axis
+              labels: labelBiologia,
+              datasets: [
+                {
+                  fill: false,
+                  pointRadius: 5,
+                  pointHoverRadius: 10,
+                  borderColor: 'rgb(13, 186, 7)',
+                  tension: 0.4,
+                  label: "Puntos",
+                  data: dataBiologia
                 }
               ]
             },

@@ -79,7 +79,7 @@
                     <h6 class="text-uppercase fw-bold mb-4 text-black">
                         Información</h6>
                     <p>
-                        <a class="text-reset" th:href="@{/nosotros}" style="text-decoration:none;">
+                        <a class="text-reset" [routerLink]="['/nosotros']" routerLinkActive="active" style="text-decoration:none;">
                           ¿Quiénes somos?</a>
                     </p>
                     <p>
@@ -94,6 +94,10 @@
                         <a class="text-reset" th:href="@{/politica}" style="text-decoration:none;">
                           Política de privacidad</a>
                     </p>
+                    <p>
+                        <a class="text-reset" th:href="@{/politica}" style="text-decoration:none;">
+                          Térm. y condiciones</a>
+                    </p>
                 </div>
                 <!-- Grid column -->
 
@@ -102,19 +106,15 @@
                     <!-- Links -->
                     <h6 class="text-uppercase fw-bold mb-4 text-black">Secciones</h6>
                     <p>
-                        <a class="text-reset" th:href="@{/}" style="text-decoration:none;">
+                        <a class="text-reset" [routerLink]="['']" routerLinkActive="active"   style="text-decoration:none;">
                           Inicio</a>
                     </p>
                     <p>
-                        <a class="text-reset" th:href="@{/usuario/registro}" style="text-decoration:none;">
-                          Registro</a>
-                    </p>
-                    <p>
-                        <a class="text-reset" th:href="@{/usuario/login}" style="text-decoration:none;">
+                        <a class="text-reset" [routerLink]="['/login']" routerLinkActive="active"  style="text-decoration:none;">
                           Login</a>
                     </p>
                     <p>
-                        <a th:href="@{/contactos}" class="text-reset" style="text-decoration:none;">
+                        <a class="text-reset" [routerLink]="['/contacto']" routerLinkActive="active" style="text-decoration:none;">
                           Contáctanos</a>
                     </p>
                 </div>
@@ -172,9 +172,9 @@
     <!-- Section: Links  -->
 
     <!-- Copyright -->
-    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05)">
-        © 2022 Copyright:
-        <a class="text-reset fw-bold" href="#" th:href="@{/}">SimuladorUNSCH.com</a>
+    <div class="text-center py-2" style="background-color: rgba(0, 0, 0, 0.05)">
+        © 2023 Copyright
+        <a class="text-reset fw-bold" [routerLink]="['']">ingresayaa.com</a>
     </div>
     <!-- Copyright -->
 </footer>
