@@ -272,6 +272,46 @@ export class HistorialComponent implements OnInit {
       }
     );
 
+    //Obtener resultado de prácticas de Física
+    this._userService.obtener_resultado_practicas_fisica(this.id, this.token).subscribe(
+      response => {
+        this.resultados = response.data;
+
+        let labelFisica = [];
+        let dataFisica = [];
+        if (this.resultados.length > 0) {
+          for (let i = 0; i < this.resultados.length; i++) {
+            labelFisica.push((i + 1).toString());
+            dataFisica.push(this.resultados[i].puntos);
+          }
+
+          this.chart = new Chart("MyChartFisica", {
+            type: 'line', //this denotes tha type of chart
+
+
+            data: {// values on X-Axis
+              labels: labelFisica,
+              datasets: [
+                {
+                  fill: false,
+                  pointRadius: 5,
+                  pointHoverRadius: 10,
+                  borderColor: 'rgb(255, 109, 24)',
+                  tension: 0.4,
+                  label: "Puntos",
+                  data: dataFisica
+                }
+              ]
+            },
+            options: {
+              aspectRatio: 2.4
+            }
+
+          });
+        }
+      }
+    );
+
 
      //Obtener resultado de prácticas de Trigonometría
      this._userService.obtener_resultado_practicas_trigonometria(this.id, this.token).subscribe(
