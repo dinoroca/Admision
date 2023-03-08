@@ -191,6 +191,47 @@ export class HistorialComponent implements OnInit {
         }
       }
     );
+
+
+     //Obtener resultado de prácticas de Trigonometría
+     this._userService.obtener_resultado_practicas_trigonometria(this.id, this.token).subscribe(
+      response => {
+        this.resultados = response.data;
+
+        let labelTrigonometria = [];
+        let dataTrigonometria = [];
+        if (this.resultados.length > 0) {
+          for (let i = 0; i < this.resultados.length; i++) {
+            labelTrigonometria.push((i + 1).toString());
+            dataTrigonometria.push(this.resultados[i].puntos);
+          }
+
+          this.chart = new Chart("MyChartTrigo", {
+            type: 'line', //this denotes tha type of chart
+
+
+            data: {// values on X-Axis
+              labels: labelTrigonometria,
+              datasets: [
+                {
+                  fill: false,
+                  pointRadius: 5,
+                  pointHoverRadius: 10,
+                  borderColor: 'rgb(64, 196, 27)',
+                  tension: 0.4,
+                  label: "Puntos",
+                  data: dataTrigonometria
+                }
+              ]
+            },
+            options: {
+              aspectRatio: 2.4
+            }
+
+          });
+        }
+      }
+    );
   }
 
 }
