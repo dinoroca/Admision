@@ -192,6 +192,86 @@ export class HistorialComponent implements OnInit {
       }
     );
 
+    //Obtener resultado de prácticas de Economía
+    this._userService.obtener_resultado_practicas_economia(this.id, this.token).subscribe(
+      response => {
+        this.resultados = response.data;
+
+        let labelEconomia = [];
+        let dataEconomia = [];
+        if (this.resultados.length > 0) {
+          for (let i = 0; i < this.resultados.length; i++) {
+            labelEconomia.push((i + 1).toString());
+            dataEconomia.push(this.resultados[i].puntos);
+          }
+
+          this.chart = new Chart("MyChartEco", {
+            type: 'line', //this denotes tha type of chart
+
+
+            data: {// values on X-Axis
+              labels: labelEconomia,
+              datasets: [
+                {
+                  fill: false,
+                  pointRadius: 5,
+                  pointHoverRadius: 10,
+                  borderColor: 'rgb(239, 180, 32)',
+                  tension: 0.4,
+                  label: "Puntos",
+                  data: dataEconomia
+                }
+              ]
+            },
+            options: {
+              aspectRatio: 2.4
+            }
+
+          });
+        }
+      }
+    );
+
+    //Obtener resultado de prácticas de Educación Cívica
+    this._userService.obtener_resultado_practicas_ed_civica(this.id, this.token).subscribe(
+      response => {
+        this.resultados = response.data;
+
+        let labelEdCivica = [];
+        let dataEdCivica = [];
+        if (this.resultados.length > 0) {
+          for (let i = 0; i < this.resultados.length; i++) {
+            labelEdCivica.push((i + 1).toString());
+            dataEdCivica.push(this.resultados[i].puntos);
+          }
+
+          this.chart = new Chart("MyChartEdCivica", {
+            type: 'line', //this denotes tha type of chart
+
+
+            data: {// values on X-Axis
+              labels: labelEdCivica,
+              datasets: [
+                {
+                  fill: false,
+                  pointRadius: 5,
+                  pointHoverRadius: 10,
+                  borderColor: 'rgb(203, 33, 251)',
+                  tension: 0.4,
+                  label: "Puntos",
+                  data: dataEdCivica
+                }
+              ]
+            },
+            options: {
+              aspectRatio: 2.4
+            }
+
+          });
+        }
+      }
+    );
+
 
      //Obtener resultado de prácticas de Trigonometría
      this._userService.obtener_resultado_practicas_trigonometria(this.id, this.token).subscribe(

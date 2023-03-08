@@ -1,1 +1,246 @@
-<p>ed-civica works!</p>
+<app-nav></app-nav>
+
+<div class="container py-5">
+    <div class="shadow rounded mt-5 p-4">
+        <p class="text-center">Desarrolle las preguntas que se muestran en el menor tiempo posible!</p>
+
+        <div class="card-body text-center">
+            <div *ngIf="!load_data" class="mt-5 tiempo fixed-top" style="background-color: #FFF;">
+                Tiempo transcurrido:
+                <span [ngStyle]="{'color': tiempo.getTime() > 0 ? 'green' : 'red'}">
+                    {{getTiempoFormateado(tiempo)}}
+                </span>
+            </div>
+            <div class="" *ngIf="load_data">
+                <button type="button" class="btn btn-success" (click)="iniciar()">Iniciar práctica &nbsp; &nbsp;
+                    <i class="bi bi-forward-fill"></i>
+                </button>
+            </div>
+        </div>
+
+        <ng-container *ngIf="load_data">
+            <div class="text-center">
+                <div class="spinner-grow text-secondary my-3" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </ng-container>
+
+        <ul class="list-group my-4" *ngFor="let item of preguntas; let indice = index">
+            <li class="list-group-item pregunta">
+                <div class="text-center fw-bold text-black-50">
+                    <em>Pregunta {{indice + 1}}</em>
+                </div>
+                <span [innerHTML]="item.pregunta">
+                </span>
+            </li>
+            <li class="list-group-item alternativa">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="alt-{{indice}}" id="alt_a-{{indice}}"
+                        (change)="agregarMarcado(indice, item.alt_a[0])">
+                    <label class="form-check-label" for="alt_a-{{indice}}">
+                        A) {{item.alt_a[0]}}
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="alt-{{indice}}" id="alt_b-{{indice}}"
+                        (change)="agregarMarcado(indice, item.alt_b[0])">
+                    <label class="form-check-label" for="alt_b-{{indice}}">
+                        B) {{item.alt_b[0]}}
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="alt-{{indice}}" id="alt_c-{{indice}}"
+                        (change)="agregarMarcado(indice, item.alt_c[0])">
+                    <label class="form-check-label" for="alt_c-{{indice}}">
+                        C) {{item.alt_c[0]}}
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="alt-{{indice}}" id="alt_d-{{indice}}"
+                        (change)="agregarMarcado(indice, item.alt_d[0])">
+                    <label class="form-check-label" for="alt_d-{{indice}}">
+                        D) {{item.alt_d[0]}}
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="alt-{{indice}}" id="alt_e-{{indice}}"
+                        (change)="agregarMarcado(indice, item.alt_e[0])">
+                    <label class="form-check-label" for="alt_e-{{indice}}">
+                        E) {{item.alt_e[0]}}
+                    </label>
+                </div>
+
+            </li>
+        </ul>
+
+        <div class="text-center" *ngIf="!load_data">
+
+            <!-- Button trigger modal advertencia -->
+            <button *ngIf="!proceder" type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                data-bs-target="#advetenciaModal">
+                <i class="bi bi-check-circle"></i> &nbsp; &nbsp;
+                Finalizar práctica
+            </button>
+
+            <!-- Button trigger modal confirmar -->
+            <button *ngIf="proceder" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                data-bs-target="#confirmarModal">
+                <i class="bi bi-check-circle"></i> &nbsp; &nbsp;
+                Finalizar práctica
+            </button>
+
+            <!-- Modal de advetencia -->
+            <div class="modal fade" id="advetenciaModal" tabindex="-1" aria-labelledby="advetenciaModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-4 text-danger fw-bold" id="advetenciaModalLabel">Advertencia!!!
+                            </h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Hay preguntas que aún no tienen respuesta, desea dejarlo así?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                            <button type="button" class="btn btn-warning" (click)="cambiarProceder()"
+                                data-bs-dismiss="modal">
+                                Proceder a calificar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal de confirmación -->
+            <div class="modal fade" id="confirmarModal" tabindex="-1" aria-labelledby="confirmarModal"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-4 fw-bold text-success" id="confirmarModalLabel">Calificar</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Desea proceder a calificar su práctica?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                            <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="calificar()"
+                                data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                Sí, calificar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal resultado -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-4 fw-bold text-success" id="staticBackdropLabel">Resultado</h1>
+                        </div>
+                        <div class="modal-body">
+                            <div class="card py-3 d-flex justify-content-center">
+                                <div class="card-body">
+                                  <h5 class="card-title fw-bold">Puntaje</h5>
+                                  <p class="card-text fs-3 text-black-50 fw-bold">
+                                    <span [ngClass]="{'text-danger': puntaje < 6, 'text-warning': puntaje < 8 && puntaje > 5, 'text-success': puntaje > 7}">
+                                        {{puntaje}}
+                                    </span>
+                                     / {{preguntas.length}}
+                                </p>
+
+                                <small class="text-black-50" *ngIf="puntaje < 6">No te desanimes, sigue preparándote</small>
+                                <small class="text-black-50" *ngIf="puntaje < 8 && puntaje > 5">Es un buen puntaje, sigue esforzándote</small>
+                                <small class="text-black-50" *ngIf="puntaje > 7">Felicitaciones, estás a un paso de legrar tu ingreso</small>
+                                </div>
+                              </div>
+
+                              <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Pregunta</th>
+                                        <th scope="col">Correcto</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr *ngFor="let item of preguntas; let indice = index">
+                                        <th scope="row">{{indice + 1}}</th>
+                                        <td [innerHTML]="item.pregunta"></td>
+
+                                        <td *ngIf="acertadas[indice]" class="text-success"><i class="bi bi-check-circle-fill"></i></td>
+                                        <td *ngIf="!acertadas[indice]" class="text-danger"><i class="bi bi-x-circle"></i></td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                              </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" 
+                                data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
+                                <i class="bi bi-eye"></i> &nbsp;
+                                Solucionario
+                            </button>
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="redirigir()">
+                                <i class="bi bi-lightning"></i> &nbsp;
+                                Seguir
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal ver solucionario -->
+            <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdrop1Label" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-4 fw-bold text-success" id="staticBackdrop1Label">Solucionario</h1>
+                        </div>
+                        <div class="modal-body" id="solucionario">
+                            <ul class="list-group my-4" *ngFor="let item of preguntas; let indice = index">
+                                <li class="list-group-item">
+                                    <div class="text-center fw-bold text-black-50">
+                                        <em>Pregunta {{indice + 1}}</em>
+                                    </div>
+                                    <span [innerHTML]="item.pregunta">
+                                    </span>
+                                    <p class="fw-bold text-primary fs-5">Solución</p>
+                                    <span [innerHTML]="item.solucionario">
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="descargarPDF()">
+                                <i class="bi bi-download"></i> &nbsp;
+                                Descargar
+                            </button>
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="redirigir()">
+                                <i class="bi bi-lightning"></i> &nbsp;
+                                Seguir
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

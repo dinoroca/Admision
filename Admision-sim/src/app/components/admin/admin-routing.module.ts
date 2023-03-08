@@ -56,6 +56,7 @@ import { EditRazVerbalComponent } from './cursos/razVerbal/edit-raz-verbal/edit-
 import { IndexTrigonometriaComponent } from './cursos/trigonometria/index-trigonometria/index-trigonometria.component';
 import { CreateTrigonometriaComponent } from './cursos/trigonometria/create-trigonometria/create-trigonometria.component';
 import { EditTrigonometriaComponent } from './cursos/trigonometria/edit-trigonometria/edit-trigonometria.component';
+import { EditEdCivicaComponent } from './cursos/edCivica/edit-ed-civica/edit-ed-civica.component';
 
 const routes: Routes = [
   { path: '', component: InicioComponent },
@@ -93,7 +94,7 @@ const routes: Routes = [
   //Educación cívica
   { path: 'ed-civica', component:  IndexEdCivicaComponent},
   { path: 'ed-civica/registrar', component:  CreateEdCivicaComponent},
-  { path: 'ed-civica/:id', component:  EditEconomiaComponent},
+  { path: 'ed-civica/:id', component:  EditEdCivicaComponent},
 
   //Física
   { path: 'fisica', component:  IndexFisicaComponent},
