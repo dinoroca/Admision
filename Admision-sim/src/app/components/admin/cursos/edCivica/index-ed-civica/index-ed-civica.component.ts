@@ -25,7 +25,7 @@ export class IndexEdCivicaComponent implements OnInit {
     private _preguntaService: PreguntaService,
     private _toastrService: ToastrService
   ) {
-    this.token = localStorage.getItem('token');
+    this.token = localStorage.getItem('token') || sessionStorage.getItem('token');
     this.url = GLOBAL.url;
   }
 
