@@ -352,6 +352,46 @@ export class HistorialComponent implements OnInit {
       }
     );
 
+    //Obtener resultado de prácticas de Geometría
+    this._userService.obtener_resultado_practicas_geometria(this.id, this.token).subscribe(
+      response => {
+        this.resultados = response.data;
+
+        let labelGeometria = [];
+        let dataGeometria = [];
+        if (this.resultados.length > 0) {
+          for (let i = 0; i < this.resultados.length; i++) {
+            labelGeometria.push((i + 1).toString());
+            dataGeometria.push(this.resultados[i].puntos);
+          }
+
+          this.chart = new Chart("MyChartGeometria", {
+            type: 'line', //this denotes tha type of chart
+
+
+            data: {// values on X-Axis
+              labels: labelGeometria,
+              datasets: [
+                {
+                  fill: false,
+                  pointRadius: 5,
+                  pointHoverRadius: 10,
+                  borderColor: 'rgb(38, 92, 255)',
+                  tension: 0.4,
+                  label: "Puntos",
+                  data: dataGeometria
+                }
+              ]
+            },
+            options: {
+              aspectRatio: 2.4
+            }
+
+          });
+        }
+      }
+    );
+
 
      //Obtener resultado de prácticas de Trigonometría
      this._userService.obtener_resultado_practicas_trigonometria(this.id, this.token).subscribe(
