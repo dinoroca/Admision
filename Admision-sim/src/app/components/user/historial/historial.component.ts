@@ -312,25 +312,25 @@ export class HistorialComponent implements OnInit {
       }
     );
 
-    //Obtener resultado de prácticas de Geografía
-    this._userService.obtener_resultado_practicas_geografia(this.id, this.token).subscribe(
+    //Obtener resultado de prácticas de Razonamiento Verbal
+    this._userService.obtener_resultado_practicas_raz_verbal(this.id, this.token).subscribe(
       response => {
         this.resultados = response.data;
 
-        let labelGeografia = [];
-        let dataGeografia = [];
+        let labelRazVerbal = [];
+        let dataRazVerbal = [];
         if (this.resultados.length > 0) {
           for (let i = 0; i < this.resultados.length; i++) {
-            labelGeografia.push((i + 1).toString());
-            dataGeografia.push(this.resultados[i].puntos);
+            labelRazVerbal.push((i + 1).toString());
+            dataRazVerbal.push(this.resultados[i].puntos);
           }
 
-          this.chart = new Chart("MyChartGeografia", {
+          this.chart = new Chart("MyChartRazVerbal", {
             type: 'line', //this denotes tha type of chart
 
 
             data: {// values on X-Axis
-              labels: labelGeografia,
+              labels: labelRazVerbal,
               datasets: [
                 {
                   fill: false,
@@ -339,7 +339,7 @@ export class HistorialComponent implements OnInit {
                   borderColor: 'rgb(63, 63, 63)',
                   tension: 0.4,
                   label: "Puntos",
-                  data: dataGeografia
+                  data: dataRazVerbal
                 }
               ]
             },
@@ -351,6 +351,46 @@ export class HistorialComponent implements OnInit {
         }
       }
     );
+
+       //Obtener resultado de prácticas de Geografía
+       this._userService.obtener_resultado_practicas_geografia(this.id, this.token).subscribe(
+        response => {
+          this.resultados = response.data;
+  
+          let labelGeografia = [];
+          let dataGeografia = [];
+          if (this.resultados.length > 0) {
+            for (let i = 0; i < this.resultados.length; i++) {
+              labelGeografia.push((i + 1).toString());
+              dataGeografia.push(this.resultados[i].puntos);
+            }
+  
+            this.chart = new Chart("MyChartGeografia", {
+              type: 'line', //this denotes tha type of chart
+  
+  
+              data: {// values on X-Axis
+                labels: labelGeografia,
+                datasets: [
+                  {
+                    fill: false,
+                    pointRadius: 5,
+                    pointHoverRadius: 10,
+                    borderColor: 'rgb(63, 63, 63)',
+                    tension: 0.4,
+                    label: "Puntos",
+                    data: dataGeografia
+                  }
+                ]
+              },
+              options: {
+                aspectRatio: 2.4
+              }
+  
+            });
+          }
+        }
+      );
 
 
      //Obtener resultado de prácticas de Trigonometría
