@@ -9,6 +9,10 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./edit-geometria.component.css']
 })
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 export class EditGeometriaComponent implements OnInit {
 
   public token: any;
@@ -159,8 +163,11 @@ export class EditGeometriaComponent implements OnInit {
 
 }
 
+<<<<<<< HEAD
 
 
 
 
 
+=======
+>>>>>>> master

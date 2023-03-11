@@ -9,6 +9,10 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./create-geometria.component.css']
 })
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 export class CreateGeometriaComponent implements OnInit {
   public token: any;
   public load_btn = false;
@@ -101,5 +105,8 @@ export class CreateGeometriaComponent implements OnInit {
 }
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> master
