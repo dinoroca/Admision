@@ -381,6 +381,240 @@ export class HistorialComponent implements OnInit {
         }
       });
 
+    //Obtener resultado de prácticas de Historia del Perú
+    this._userService
+      .obtener_resultado_practicas_historia_peru(this.id, this.token)
+      .subscribe((response) => {
+        this.resultados = response.data;
+
+        let labelHPeru = [];
+        let dataHPeru = [];
+        if (this.resultados.length > 0) {
+          for (let i = 0; i < this.resultados.length; i++) {
+            labelHPeru.push((i + 1).toString());
+            dataHPeru.push(this.resultados[i].puntos);
+          }
+
+          this.chart = new Chart('MyChartHPeru', {
+            type: 'line', //this denotes tha type of chart
+
+            data: {
+              // values on X-Axis
+              labels: labelHPeru,
+              datasets: [
+                {
+                  fill: false,
+                  pointRadius: 5,
+                  pointHoverRadius: 10,
+                  borderColor: 'rgb(175, 80, 16)',
+                  tension: 0.4,
+                  label: 'Puntos',
+                  data: dataHPeru,
+                },
+              ],
+            },
+            options: {
+              aspectRatio: 2.4,
+            },
+          });
+        }
+      });
+
+    //Obtener resultado de prácticas de Historia Universal
+    this._userService
+      .obtener_resultado_practicas_historia_universal(this.id, this.token)
+      .subscribe((response) => {
+        this.resultados = response.data;
+
+        let labelHUniversal = [];
+        let dataHUniversal = [];
+        if (this.resultados.length > 0) {
+          for (let i = 0; i < this.resultados.length; i++) {
+            labelHUniversal.push((i + 1).toString());
+            dataHUniversal.push(this.resultados[i].puntos);
+          }
+
+          this.chart = new Chart('MyChartHUniversal', {
+            type: 'line', //this denotes tha type of chart
+
+            data: {
+              // values on X-Axis
+              labels: labelHUniversal,
+              datasets: [
+                {
+                  fill: false,
+                  pointRadius: 5,
+                  pointHoverRadius: 10,
+                  borderColor: 'rgb(255, 255, 255)',
+                  tension: 0.4,
+                  label: 'Puntos',
+                  data: dataHUniversal,
+                },
+              ],
+            },
+            options: {
+              aspectRatio: 2.4,
+            },
+          });
+        }
+      });
+    
+    //Obtener resultado de prácticas de Lenguaje
+    this._userService
+      .obtener_resultado_practicas_lenguaje(this.id, this.token)
+      .subscribe((response) => {
+        this.resultados = response.data;
+
+        let labelLenguaje = [];
+        let dataLenguaje = [];
+        if (this.resultados.length > 0) {
+          for (let i = 0; i < this.resultados.length; i++) {
+            labelLenguaje.push((i + 1).toString());
+            dataLenguaje.push(this.resultados[i].puntos);
+          }
+
+          this.chart = new Chart('MyChartLenguaje', {
+            type: 'line', //this denotes tha type of chart
+
+            data: {
+              // values on X-Axis
+              labels: labelLenguaje,
+              datasets: [
+                {
+                  fill: false,
+                  pointRadius: 5,
+                  pointHoverRadius: 10,
+                  borderColor: 'rgb(4, 214, 154)',
+                  tension: 0.4,
+                  label: 'Puntos',
+                  data: dataLenguaje,
+                },
+              ],
+            },
+            options: {
+              aspectRatio: 2.4,
+            },
+          });
+        }
+      });
+
+    //Obtener resultado de prácticas de Literatura
+    this._userService
+      .obtener_resultado_practicas_literatura(this.id, this.token)
+      .subscribe((response) => {
+        this.resultados = response.data;
+
+        let labelLiteratura = [];
+        let dataLiteratura = [];
+        if (this.resultados.length > 0) {
+          for (let i = 0; i < this.resultados.length; i++) {
+            labelLiteratura.push((i + 1).toString());
+            dataLiteratura.push(this.resultados[i].puntos);
+          }
+
+          this.chart = new Chart('MyChartLiteratura', {
+            type: 'line', //this denotes tha type of chart
+
+            data: {
+              // values on X-Axis
+              labels: labelLiteratura,
+              datasets: [
+                {
+                  fill: false,
+                  pointRadius: 5,
+                  pointHoverRadius: 10,
+                  borderColor: 'rgb(226, 48, 190)',
+                  tension: 0.4,
+                  label: 'Puntos',
+                  data: dataLiteratura,
+                },
+              ],
+            },
+            options: {
+              aspectRatio: 2.4,
+            },
+          });
+        }
+      });
+
+    //Obtener resultado de prácticas de Química
+    this._userService
+      .obtener_resultado_practicas_quimica(this.id, this.token)
+      .subscribe((response) => {
+        this.resultados = response.data;
+
+        let labelQuimica = [];
+        let dataQuimica = [];
+        if (this.resultados.length > 0) {
+          for (let i = 0; i < this.resultados.length; i++) {
+            labelQuimica.push((i + 1).toString());
+            dataQuimica.push(this.resultados[i].puntos);
+          }
+
+          this.chart = new Chart('MyChartQuimica', {
+            type: 'line', //this denotes tha type of chart
+
+            data: {
+              // values on X-Axis
+              labels: labelQuimica,
+              datasets: [
+                {
+                  fill: false,
+                  pointRadius: 5,
+                  pointHoverRadius: 10,
+                  borderColor: 'rgb(0, 217, 90)',
+                  tension: 0.4,
+                  label: 'Puntos',
+                  data: dataQuimica,
+                },
+              ],
+            },
+            options: {
+              aspectRatio: 2.4,
+            },
+          });
+        }
+      });
+
+    //Obtener resultado de prácticas de Razonamiento Matemático
+    this._userService
+      .obtener_resultado_practicas_raz_matematico(this.id, this.token)
+      .subscribe((response) => {
+        this.resultados = response.data;
+
+        let labelRazmMatematico = [];
+        let dataRazmMatematico = [];
+        if (this.resultados.length > 0) {
+          for (let i = 0; i < this.resultados.length; i++) {
+            labelRazmMatematico.push((i + 1).toString());
+            dataRazmMatematico.push(this.resultados[i].puntos);
+          }
+
+          this.chart = new Chart('MyChartRazmMatematico', {
+            type: 'line', //this denotes tha type of chart
+
+            data: {
+              // values on X-Axis
+              labels: labelRazmMatematico,
+              datasets: [
+                {
+                  fill: false,
+                  pointRadius: 5,
+                  pointHoverRadius: 10,
+                  borderColor: 'rgb(255, 84, 124)',
+                  tension: 0.4,
+                  label: 'Puntos',
+                  data: dataRazmMatematico,
+                },
+              ],
+            },
+            options: {
+              aspectRatio: 2.4,
+            },
+          });
+        }
+      });
+
     //Obtener resultado de prácticas de Razonamiento Verbal
     this._userService
       .obtener_resultado_practicas_raz_verbal(this.id, this.token)
